@@ -13,9 +13,14 @@ abstract class AppConstants {
     'Sat',
     'Sun'
   ];
-  static List<Color> todoColors = [
+  static List<Color> todoLightColors = [
     blue,
     orange,
     red,
+  ];
+  static List<Color> todoDarkColors = [
+    darkBlue,
+    darkOrange,
+    darkRed,
   ];
 }

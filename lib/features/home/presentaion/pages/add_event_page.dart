@@ -64,9 +64,11 @@ class _AddEventPageState extends State<AddEventPage> {
                         DropdownButtonHideUnderline(
                           child: DropdownButton<int>(
                             value: 0,
-                            items: AppConstants.todoColors.map((Color color) {
+                            items:
+                                AppConstants.todoLightColors.map((Color color) {
                               return DropdownMenuItem<int>(
-                                value: AppConstants.todoColors.indexOf(color),
+                                value:
+                                    AppConstants.todoLightColors.indexOf(color),
                                 child: SizedBox(
                                   height: 24,
                                   width: 24,
