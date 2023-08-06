@@ -8,18 +8,20 @@ abstract class HomeLocalDataSource {
 
 class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
-  Future<List<EventModel>> getModels(String time) {
-    throw UnimplementedError();
+  Future<List<EventModel>> getModels(String time) async {
+    final db = await DatabaseService().database;
+    final data = await db.rawQuery(
+      'SELECT * FROM events WHERE day = ?',
+      [time],
+    );
+    final models = data.map((e) => EventModel.fromMap(e)).toList();
+    return models;
   }
 
   @override
   Future<void> addModel(EventModel model) async {
     final db = await DatabaseService().database;
-    print(
-      await db.insert(
-        'events',
-        model.toMap(),
-      ),
-    );
+
+    await db.insert('events', model.toMap());
   }
 }

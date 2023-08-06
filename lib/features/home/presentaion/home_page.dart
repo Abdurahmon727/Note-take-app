@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/bloc/show_pop_up/show_pop_up_bloc.dart';
+import '../../../core/models/formz/formz_status.dart';
 import '../../../core/navigator.dart';
 import '../../../core/widgets/w_button.dart';
 import 'bloc/calendar_bloc.dart';
@@ -97,15 +98,31 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 18),
-                      ListView.separated(
-                        shrinkWrap: true,
-                        primary: false,
-                        itemBuilder: (context, index) {
-                          return WEventPreview();
-                        },
-                        separatorBuilder: (_, __) => const SizedBox(height: 14),
-                        itemCount: 10,
-                      )
+                      () {
+                        if (state.status == FormzStatus.submissionSuccess) {
+                          final models = state.models;
+                          if (models.isEmpty) {
+                            return const Center(
+                                child: Text('No Events found for this day'));
+                          } else {
+                            return ListView.separated(
+                              itemCount: models.length,
+                              shrinkWrap: true,
+                              primary: false,
+                              itemBuilder: (context, index) {
+                                return WEventPreview(model: models[index]);
+                              },
+                              separatorBuilder: (_, __) =>
+                                  const SizedBox(height: 14),
+                            );
+                          }
+                        } else if (state.status ==
+                            FormzStatus.submissionInProgress) {
+                          return const Center(
+                              child: CircularProgressIndicator(color: blue));
+                        }
+                        return const SizedBox();
+                      }(),
                     ],
                   ),
                 ),

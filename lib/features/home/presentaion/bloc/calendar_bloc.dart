@@ -21,16 +21,27 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
       emit(state.copyWith(selectedMonth: selectedMonth));
     });
 
-    on<_ChangeSelectedMonth>(
-        (event, emit) => emit(state.copyWith(selectedMonth: event.newMonth)));
+    on<_ChangeSelectedMonth>((event, emit) {
+      if (state.selectedMonth != event.newMonth) {
+        emit(state.copyWith(selectedMonth: event.newMonth));
+      }
+    });
 
-    on<_ChangeSelectedDate>((event, emit) {
-      emit(
-        state.copyWith(
+    on<_ChangeSelectedDate>((event, emit) async {
+      if (state.selectedDate != event.newDate) {
+        emit(state.copyWith(
           selectedDate: event.newDate,
           status: FormzStatus.submissionInProgress,
-        ),
-      );
+        ));
+        final result =
+            await _repository.getEvents(event.newDate.toIso8601String());
+        result.either((fail) {
+          emit(state.copyWith(status: FormzStatus.submissionFailure));
+        }, (success) {
+          emit(state.copyWith(
+              status: FormzStatus.submissionSuccess, models: success));
+        });
+      }
     });
 
     on<_AddEvent>((event, emit) async {

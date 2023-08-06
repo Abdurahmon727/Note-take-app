@@ -20,11 +20,11 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Either<StorageFailure, List<EventModel>>> getEvents(
       String time) async {
-    try {
-      final data = await _localDataSource.getModels(time);
-      return Right(data);
-    } catch (e) {
-      return Left(StorageFailure(errorMessage: 'Unable to get data'));
-    }
+    // try {
+    final data = await _localDataSource.getModels(time);
+    return Right(data);
+    // } catch (e) {
+    //   return Left(StorageFailure(errorMessage: 'Unable to get data'));
+    // }
   }
 }
