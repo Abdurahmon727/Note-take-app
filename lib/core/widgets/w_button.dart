@@ -51,7 +51,7 @@ class WButton extends StatelessWidget {
           child: Container(
             width: width,
             height: height,
-            padding: padding ?? const EdgeInsets.all(14),
+            padding: padding,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: disabled ? disabledColor : color,
