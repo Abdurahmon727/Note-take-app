@@ -51,7 +51,6 @@ class WCalendarBody extends StatelessWidget {
                 children: week.map((d) {
                   return Expanded(
                     child: WCalendarItem(
-                      hasRightBorder: false,
                       date: d.date,
                       isActiveMonth: d.isActiveMonth,
                       onTap: () => selectDate(d.date),

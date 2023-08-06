@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:udevs_task/assets/constants.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../core/data/date_time.dart';
+import '../../data/repositories/home_repo.dart';
 
 class WCalendarItem extends StatelessWidget {
   const WCalendarItem({
     super.key,
-    required this.hasRightBorder,
     required this.isActiveMonth,
     required this.isSelected,
     required this.date,
     required this.onTap,
   });
 
-  final bool hasRightBorder;
   final bool isActiveMonth;
   final VoidCallback onTap;
   final bool isSelected;
@@ -59,18 +59,34 @@ class WCalendarItem extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 3),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                height: 4,
-                width: 4,
-                decoration:
-                    const BoxDecoration(color: red, shape: BoxShape.circle),
-              ),
-            ],
-          ),
-          const SizedBox(height: 3),
+          FutureBuilder(
+              future: HomeRepositoryImpl()
+                  .getFirst3EventsColorIndexes(date.toIso8601String()),
+              builder: (context, snapShot) {
+                if (snapShot.hasData && snapShot.data!.isRight) {
+                  final colorIndexes = snapShot.data!.right;
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(
+                        colorIndexes.length,
+                        (i) => Container(
+                          height: 4,
+                          width: 4,
+                          decoration: BoxDecoration(
+                            color:
+                                AppConstants.todoLightColors[colorIndexes[i]],
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }
+                return const SizedBox.shrink();
+              }),
+          const SizedBox(height: 5),
         ],
       ),
     );

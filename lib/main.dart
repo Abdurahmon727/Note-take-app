@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:udevs_task/core/data/service_locator.dart';
 
 import 'assets/colors.dart';
 import 'assets/theme.dart';
@@ -14,6 +15,7 @@ import 'features/home/presentaion/home_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DatabaseService().database;
+  setupLocator();
 
   runApp(const MyApp());
 }

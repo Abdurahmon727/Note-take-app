@@ -29,17 +29,17 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
 
     on<_ChangeSelectedDate>((event, emit) async {
       if (state.selectedDate != event.newDate) {
-        emit(state.copyWith(
-          selectedDate: event.newDate,
-          status: FormzStatus.submissionInProgress,
-        ));
         final result =
             await _repository.getEvents(event.newDate.toIso8601String());
         result.either((fail) {
-          emit(state.copyWith(status: FormzStatus.submissionFailure));
+          emit(state.copyWith(
+              selectedDate: event.newDate,
+              status: FormzStatus.submissionFailure));
         }, (success) {
           emit(state.copyWith(
-              status: FormzStatus.submissionSuccess, models: success));
+              selectedDate: event.newDate,
+              status: FormzStatus.submissionSuccess,
+              models: success));
         });
       }
     });
