@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:udevs_task/core/bloc/show_pop_up/show_pop_up_bloc.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
 import '../../../../assets/icons.dart';
+import '../../../../core/bloc/show_pop_up/show_pop_up_bloc.dart';
 import '../../../../core/widgets/text_field.dart';
 import '../../../../core/widgets/w_button.dart';
 import '../../../../core/widgets/w_scale.dart';
@@ -208,8 +208,6 @@ class _AddEventPageState extends State<AddEventPage> {
                   ),
                 ),
                 onTap: () {
-                  print(widget.selectedDate.toIso8601String());
-
                   final EventModel model = EventModel(
                     day: widget.selectedDate.toIso8601String(),
                     name: eventNameController.text,
@@ -230,7 +228,7 @@ class _AddEventPageState extends State<AddEventPage> {
                             Navigator.pop(context);
                             context.read<ShowPopUpBloc>().add(
                                   ShowPopUpEvent.showSuccess(
-                                      text: 'New event successfully added'),
+                                      text: 'New event successfully added 👌'),
                                 );
                           },
                         ),

@@ -1,7 +1,7 @@
 import '../../../../core/data/either.dart';
 import '../../../../core/error/failure.dart';
 import '../../domain/repositories/home_repo.dart';
-import '../data_sources/home_local_data_source.dart';
+import '../data_sources/local_data_source.dart';
 import '../models/event_model.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -31,11 +31,11 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Either<StorageFailure, List<int>>> getFirst3EventsColorIndexes(
       String date) async {
-    // try {
-    final result = await _localDataSource.getFirst3EventsColorIndexes(date);
-    return Right(result);
-    // } catch (e) {
-    //   return Left(StorageFailure(errorMessage: 'Something went wrong'));
-    // }
+    try {
+      final result = await _localDataSource.getFirst3EventsColorIndexes(date);
+      return Right(result);
+    } catch (e) {
+      return Left(StorageFailure(errorMessage: 'Something went wrong'));
+    }
   }
 }

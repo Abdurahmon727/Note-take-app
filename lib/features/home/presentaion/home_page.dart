@@ -98,31 +98,38 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 18),
-                      () {
-                        if (state.status == FormzStatus.submissionSuccess) {
-                          final models = state.models;
-                          if (models.isEmpty) {
+                      Builder(builder: (context) {
+                        return () {
+                          if (state.status == FormzStatus.submissionSuccess) {
+                            final models = state.models;
+                            if (models.isEmpty) {
+                              return const Center(
+                                  child:
+                                      Text('No Events found for this day 🤫'));
+                            } else {
+                              return ListView.separated(
+                                itemCount: models.length,
+                                shrinkWrap: true,
+                                primary: false,
+                                itemBuilder: (context, index) {
+                                  return WEventPreview(model: models[index]);
+                                },
+                                separatorBuilder: (_, __) =>
+                                    const SizedBox(height: 14),
+                              );
+                            }
+                          } else if (state.status ==
+                              FormzStatus.submissionInProgress) {
                             return const Center(
-                                child: Text('No Events found for this day'));
-                          } else {
-                            return ListView.separated(
-                              itemCount: models.length,
-                              shrinkWrap: true,
-                              primary: false,
-                              itemBuilder: (context, index) {
-                                return WEventPreview(model: models[index]);
-                              },
-                              separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 14),
+                                child: CircularProgressIndicator(color: blue));
+                          } else if (state.status == FormzStatus.pure) {
+                            return const Center(
+                              child: Text('Welcome  🥳 '),
                             );
                           }
-                        } else if (state.status ==
-                            FormzStatus.submissionInProgress) {
-                          return const Center(
-                              child: CircularProgressIndicator(color: blue));
-                        }
-                        return const SizedBox();
-                      }(),
+                          return const SizedBox();
+                        }();
+                      }),
                     ],
                   ),
                 ),
