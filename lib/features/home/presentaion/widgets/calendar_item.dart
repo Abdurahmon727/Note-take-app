@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../assets/colors.dart';
 import '../home_page.dart';
 
-class WCalendarRowItem extends StatelessWidget {
-  const WCalendarRowItem({
+class WCalendarItem extends StatelessWidget {
+  const WCalendarItem({
     super.key,
     required this.hasRightBorder,
     required this.isActiveMonth,
-    required this.isSelected,
     required this.date,
     required this.onTap,
   });
@@ -16,7 +15,6 @@ class WCalendarRowItem extends StatelessWidget {
   final bool hasRightBorder;
   final bool isActiveMonth;
   final VoidCallback onTap;
-  final bool isSelected;
 
   final DateTime date;
   @override
@@ -34,15 +32,12 @@ class WCalendarRowItem extends StatelessWidget {
             alignment: Alignment.center,
             height: 25,
             width: 25,
-            decoration: isSelected
-                ? const BoxDecoration(
-                    color: Colors.pink, shape: BoxShape.circle)
-                : isToday
-                    ? BoxDecoration(
-                        color: blue,
-                        borderRadius: BorderRadius.circular(30),
-                      )
-                    : null,
+            decoration: isToday
+                ? BoxDecoration(
+                    color: blue,
+                    borderRadius: BorderRadius.circular(30),
+                  )
+                : null,
             child: Text(
               number.toString(),
               style: TextStyle(
