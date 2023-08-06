@@ -17,7 +17,7 @@ class WPopUp extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             offset: const Offset(0, 1),
@@ -29,14 +29,9 @@ class WPopUp extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 8, 12, 8),
       child: Material(
         color: Colors.transparent,
-        child: Expanded(
-          child: Text(
-            text,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle1!
-                .copyWith(fontSize: 14, color: white),
-          ),
+        child: Text(
+          text,
+          style: const TextStyle(fontSize: 14, color: white),
         ),
       ),
     );

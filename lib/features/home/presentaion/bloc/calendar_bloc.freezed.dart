@@ -21,6 +21,9 @@ mixin _$CalendarEvent {
     required TResult Function() init,
     required TResult Function(DateTime newMonth) changeSelectedMonth,
     required TResult Function(DateTime newDate) changeSelectedDate,
+    required TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)
+        addNewEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +31,9 @@ mixin _$CalendarEvent {
     TResult? Function()? init,
     TResult? Function(DateTime newMonth)? changeSelectedMonth,
     TResult? Function(DateTime newDate)? changeSelectedDate,
+    TResult? Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +41,9 @@ mixin _$CalendarEvent {
     TResult Function()? init,
     TResult Function(DateTime newMonth)? changeSelectedMonth,
     TResult Function(DateTime newDate)? changeSelectedDate,
+    TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +52,7 @@ mixin _$CalendarEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeSelectedMonth value) changeSelectedMonth,
     required TResult Function(_ChangeSelectedDate value) changeSelectedDate,
+    required TResult Function(_AddEvent value) addNewEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +60,7 @@ mixin _$CalendarEvent {
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeSelectedMonth value)? changeSelectedMonth,
     TResult? Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult? Function(_AddEvent value)? addNewEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +68,7 @@ mixin _$CalendarEvent {
     TResult Function(_Init value)? init,
     TResult Function(_ChangeSelectedMonth value)? changeSelectedMonth,
     TResult Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult Function(_AddEvent value)? addNewEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +131,9 @@ class _$_Init implements _Init {
     required TResult Function() init,
     required TResult Function(DateTime newMonth) changeSelectedMonth,
     required TResult Function(DateTime newDate) changeSelectedDate,
+    required TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)
+        addNewEvent,
   }) {
     return init();
   }
@@ -129,6 +144,9 @@ class _$_Init implements _Init {
     TResult? Function()? init,
     TResult? Function(DateTime newMonth)? changeSelectedMonth,
     TResult? Function(DateTime newDate)? changeSelectedDate,
+    TResult? Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
   }) {
     return init?.call();
   }
@@ -139,6 +157,9 @@ class _$_Init implements _Init {
     TResult Function()? init,
     TResult Function(DateTime newMonth)? changeSelectedMonth,
     TResult Function(DateTime newDate)? changeSelectedDate,
+    TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -153,6 +174,7 @@ class _$_Init implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeSelectedMonth value) changeSelectedMonth,
     required TResult Function(_ChangeSelectedDate value) changeSelectedDate,
+    required TResult Function(_AddEvent value) addNewEvent,
   }) {
     return init(this);
   }
@@ -163,6 +185,7 @@ class _$_Init implements _Init {
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeSelectedMonth value)? changeSelectedMonth,
     TResult? Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult? Function(_AddEvent value)? addNewEvent,
   }) {
     return init?.call(this);
   }
@@ -173,6 +196,7 @@ class _$_Init implements _Init {
     TResult Function(_Init value)? init,
     TResult Function(_ChangeSelectedMonth value)? changeSelectedMonth,
     TResult Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult Function(_AddEvent value)? addNewEvent,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -255,6 +279,9 @@ class _$_ChangeSelectedMonth implements _ChangeSelectedMonth {
     required TResult Function() init,
     required TResult Function(DateTime newMonth) changeSelectedMonth,
     required TResult Function(DateTime newDate) changeSelectedDate,
+    required TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)
+        addNewEvent,
   }) {
     return changeSelectedMonth(newMonth);
   }
@@ -265,6 +292,9 @@ class _$_ChangeSelectedMonth implements _ChangeSelectedMonth {
     TResult? Function()? init,
     TResult? Function(DateTime newMonth)? changeSelectedMonth,
     TResult? Function(DateTime newDate)? changeSelectedDate,
+    TResult? Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
   }) {
     return changeSelectedMonth?.call(newMonth);
   }
@@ -275,6 +305,9 @@ class _$_ChangeSelectedMonth implements _ChangeSelectedMonth {
     TResult Function()? init,
     TResult Function(DateTime newMonth)? changeSelectedMonth,
     TResult Function(DateTime newDate)? changeSelectedDate,
+    TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
     required TResult orElse(),
   }) {
     if (changeSelectedMonth != null) {
@@ -289,6 +322,7 @@ class _$_ChangeSelectedMonth implements _ChangeSelectedMonth {
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeSelectedMonth value) changeSelectedMonth,
     required TResult Function(_ChangeSelectedDate value) changeSelectedDate,
+    required TResult Function(_AddEvent value) addNewEvent,
   }) {
     return changeSelectedMonth(this);
   }
@@ -299,6 +333,7 @@ class _$_ChangeSelectedMonth implements _ChangeSelectedMonth {
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeSelectedMonth value)? changeSelectedMonth,
     TResult? Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult? Function(_AddEvent value)? addNewEvent,
   }) {
     return changeSelectedMonth?.call(this);
   }
@@ -309,6 +344,7 @@ class _$_ChangeSelectedMonth implements _ChangeSelectedMonth {
     TResult Function(_Init value)? init,
     TResult Function(_ChangeSelectedMonth value)? changeSelectedMonth,
     TResult Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult Function(_AddEvent value)? addNewEvent,
     required TResult orElse(),
   }) {
     if (changeSelectedMonth != null) {
@@ -396,6 +432,9 @@ class _$_ChangeSelectedDate implements _ChangeSelectedDate {
     required TResult Function() init,
     required TResult Function(DateTime newMonth) changeSelectedMonth,
     required TResult Function(DateTime newDate) changeSelectedDate,
+    required TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)
+        addNewEvent,
   }) {
     return changeSelectedDate(newDate);
   }
@@ -406,6 +445,9 @@ class _$_ChangeSelectedDate implements _ChangeSelectedDate {
     TResult? Function()? init,
     TResult? Function(DateTime newMonth)? changeSelectedMonth,
     TResult? Function(DateTime newDate)? changeSelectedDate,
+    TResult? Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
   }) {
     return changeSelectedDate?.call(newDate);
   }
@@ -416,6 +458,9 @@ class _$_ChangeSelectedDate implements _ChangeSelectedDate {
     TResult Function()? init,
     TResult Function(DateTime newMonth)? changeSelectedMonth,
     TResult Function(DateTime newDate)? changeSelectedDate,
+    TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
     required TResult orElse(),
   }) {
     if (changeSelectedDate != null) {
@@ -430,6 +475,7 @@ class _$_ChangeSelectedDate implements _ChangeSelectedDate {
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeSelectedMonth value) changeSelectedMonth,
     required TResult Function(_ChangeSelectedDate value) changeSelectedDate,
+    required TResult Function(_AddEvent value) addNewEvent,
   }) {
     return changeSelectedDate(this);
   }
@@ -440,6 +486,7 @@ class _$_ChangeSelectedDate implements _ChangeSelectedDate {
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeSelectedMonth value)? changeSelectedMonth,
     TResult? Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult? Function(_AddEvent value)? addNewEvent,
   }) {
     return changeSelectedDate?.call(this);
   }
@@ -450,6 +497,7 @@ class _$_ChangeSelectedDate implements _ChangeSelectedDate {
     TResult Function(_Init value)? init,
     TResult Function(_ChangeSelectedMonth value)? changeSelectedMonth,
     TResult Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult Function(_AddEvent value)? addNewEvent,
     required TResult orElse(),
   }) {
     if (changeSelectedDate != null) {
@@ -470,10 +518,189 @@ abstract class _ChangeSelectedDate implements CalendarEvent {
 }
 
 /// @nodoc
+abstract class _$$_AddEventCopyWith<$Res> {
+  factory _$$_AddEventCopyWith(
+          _$_AddEvent value, $Res Function(_$_AddEvent) then) =
+      __$$_AddEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {EventModel model,
+      ValueChanged<String> onFailure,
+      VoidCallback onSuccess});
+}
+
+/// @nodoc
+class __$$_AddEventCopyWithImpl<$Res>
+    extends _$CalendarEventCopyWithImpl<$Res, _$_AddEvent>
+    implements _$$_AddEventCopyWith<$Res> {
+  __$$_AddEventCopyWithImpl(
+      _$_AddEvent _value, $Res Function(_$_AddEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? model = null,
+    Object? onFailure = null,
+    Object? onSuccess = null,
+  }) {
+    return _then(_$_AddEvent(
+      model: null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as EventModel,
+      onFailure: null == onFailure
+          ? _value.onFailure
+          : onFailure // ignore: cast_nullable_to_non_nullable
+              as ValueChanged<String>,
+      onSuccess: null == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as VoidCallback,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddEvent implements _AddEvent {
+  const _$_AddEvent(
+      {required this.model, required this.onFailure, required this.onSuccess});
+
+  @override
+  final EventModel model;
+  @override
+  final ValueChanged<String> onFailure;
+  @override
+  final VoidCallback onSuccess;
+
+  @override
+  String toString() {
+    return 'CalendarEvent.addNewEvent(model: $model, onFailure: $onFailure, onSuccess: $onSuccess)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddEvent &&
+            (identical(other.model, model) || other.model == model) &&
+            (identical(other.onFailure, onFailure) ||
+                other.onFailure == onFailure) &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, model, onFailure, onSuccess);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddEventCopyWith<_$_AddEvent> get copyWith =>
+      __$$_AddEventCopyWithImpl<_$_AddEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime newMonth) changeSelectedMonth,
+    required TResult Function(DateTime newDate) changeSelectedDate,
+    required TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)
+        addNewEvent,
+  }) {
+    return addNewEvent(model, onFailure, onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime newMonth)? changeSelectedMonth,
+    TResult? Function(DateTime newDate)? changeSelectedDate,
+    TResult? Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
+  }) {
+    return addNewEvent?.call(model, onFailure, onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime newMonth)? changeSelectedMonth,
+    TResult Function(DateTime newDate)? changeSelectedDate,
+    TResult Function(EventModel model, ValueChanged<String> onFailure,
+            VoidCallback onSuccess)?
+        addNewEvent,
+    required TResult orElse(),
+  }) {
+    if (addNewEvent != null) {
+      return addNewEvent(model, onFailure, onSuccess);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeSelectedMonth value) changeSelectedMonth,
+    required TResult Function(_ChangeSelectedDate value) changeSelectedDate,
+    required TResult Function(_AddEvent value) addNewEvent,
+  }) {
+    return addNewEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeSelectedMonth value)? changeSelectedMonth,
+    TResult? Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult? Function(_AddEvent value)? addNewEvent,
+  }) {
+    return addNewEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeSelectedMonth value)? changeSelectedMonth,
+    TResult Function(_ChangeSelectedDate value)? changeSelectedDate,
+    TResult Function(_AddEvent value)? addNewEvent,
+    required TResult orElse(),
+  }) {
+    if (addNewEvent != null) {
+      return addNewEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddEvent implements CalendarEvent {
+  const factory _AddEvent(
+      {required final EventModel model,
+      required final ValueChanged<String> onFailure,
+      required final VoidCallback onSuccess}) = _$_AddEvent;
+
+  EventModel get model;
+  ValueChanged<String> get onFailure;
+  VoidCallback get onSuccess;
+  @JsonKey(ignore: true)
+  _$$_AddEventCopyWith<_$_AddEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CalendarState {
   DateTime? get selectedMonth => throw _privateConstructorUsedError;
   DateTime? get selectedDate => throw _privateConstructorUsedError;
   List<EventModel> get models => throw _privateConstructorUsedError;
+  FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CalendarStateCopyWith<CalendarState> get copyWith =>
@@ -489,7 +716,8 @@ abstract class $CalendarStateCopyWith<$Res> {
   $Res call(
       {DateTime? selectedMonth,
       DateTime? selectedDate,
-      List<EventModel> models});
+      List<EventModel> models,
+      FormzStatus status});
 }
 
 /// @nodoc
@@ -508,6 +736,7 @@ class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
     Object? selectedMonth = freezed,
     Object? selectedDate = freezed,
     Object? models = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       selectedMonth: freezed == selectedMonth
@@ -522,6 +751,10 @@ class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
           ? _value.models
           : models // ignore: cast_nullable_to_non_nullable
               as List<EventModel>,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
     ) as $Val);
   }
 }
@@ -537,7 +770,8 @@ abstract class _$$_CalendarStateCopyWith<$Res>
   $Res call(
       {DateTime? selectedMonth,
       DateTime? selectedDate,
-      List<EventModel> models});
+      List<EventModel> models,
+      FormzStatus status});
 }
 
 /// @nodoc
@@ -554,6 +788,7 @@ class __$$_CalendarStateCopyWithImpl<$Res>
     Object? selectedMonth = freezed,
     Object? selectedDate = freezed,
     Object? models = null,
+    Object? status = null,
   }) {
     return _then(_$_CalendarState(
       selectedMonth: freezed == selectedMonth
@@ -568,6 +803,10 @@ class __$$_CalendarStateCopyWithImpl<$Res>
           ? _value._models
           : models // ignore: cast_nullable_to_non_nullable
               as List<EventModel>,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
     ));
   }
 }
@@ -578,7 +817,8 @@ class _$_CalendarState implements _CalendarState {
   _$_CalendarState(
       {this.selectedMonth = null,
       this.selectedDate = null,
-      final List<EventModel> models = const []})
+      final List<EventModel> models = const [],
+      this.status = FormzStatus.pure})
       : _models = models;
 
   @override
@@ -597,8 +837,12 @@ class _$_CalendarState implements _CalendarState {
   }
 
   @override
+  @JsonKey()
+  final FormzStatus status;
+
+  @override
   String toString() {
-    return 'CalendarState(selectedMonth: $selectedMonth, selectedDate: $selectedDate, models: $models)';
+    return 'CalendarState(selectedMonth: $selectedMonth, selectedDate: $selectedDate, models: $models, status: $status)';
   }
 
   @override
@@ -610,12 +854,13 @@ class _$_CalendarState implements _CalendarState {
                 other.selectedMonth == selectedMonth) &&
             (identical(other.selectedDate, selectedDate) ||
                 other.selectedDate == selectedDate) &&
-            const DeepCollectionEquality().equals(other._models, _models));
+            const DeepCollectionEquality().equals(other._models, _models) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, selectedMonth, selectedDate,
-      const DeepCollectionEquality().hash(_models));
+      const DeepCollectionEquality().hash(_models), status);
 
   @JsonKey(ignore: true)
   @override
@@ -628,7 +873,8 @@ abstract class _CalendarState implements CalendarState {
   factory _CalendarState(
       {final DateTime? selectedMonth,
       final DateTime? selectedDate,
-      final List<EventModel> models}) = _$_CalendarState;
+      final List<EventModel> models,
+      final FormzStatus status}) = _$_CalendarState;
 
   @override
   DateTime? get selectedMonth;
@@ -636,6 +882,8 @@ abstract class _CalendarState implements CalendarState {
   DateTime? get selectedDate;
   @override
   List<EventModel> get models;
+  @override
+  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_CalendarStateCopyWith<_$_CalendarState> get copyWith =>

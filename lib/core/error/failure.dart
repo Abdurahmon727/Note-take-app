@@ -12,4 +12,9 @@ class ServerFailure extends Failure {
   ServerFailure({this.errorMessage = '', this.statusCode = 0});
 }
 
-class CacheFailure extends Failure {}
+class StorageFailure extends Failure {
+  final String errorMessage;
+  StorageFailure({
+    this.errorMessage = '',
+  });
+}

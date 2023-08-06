@@ -7,4 +7,8 @@ class CalendarEvent with _$CalendarEvent {
       _ChangeSelectedMonth;
   const factory CalendarEvent.changeSelectedDate(DateTime newDate) =
       _ChangeSelectedDate;
+  const factory CalendarEvent.addNewEvent(
+      {required EventModel model,
+      required ValueChanged<String> onFailure,
+      required VoidCallback onSuccess}) = _AddEvent;
 }

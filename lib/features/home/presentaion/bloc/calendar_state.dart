@@ -6,5 +6,6 @@ class CalendarState with _$CalendarState {
     @Default(null) DateTime? selectedMonth,
     @Default(null) DateTime? selectedDate,
     @Default([]) List<EventModel> models,
+    @Default(FormzStatus.pure) FormzStatus status,
   }) = _CalendarState;
 }

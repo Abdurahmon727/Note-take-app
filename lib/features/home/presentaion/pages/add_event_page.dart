@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:udevs_task/core/bloc/show_pop_up/show_pop_up_bloc.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
@@ -8,6 +10,8 @@ import '../../../../assets/icons.dart';
 import '../../../../core/widgets/text_field.dart';
 import '../../../../core/widgets/w_button.dart';
 import '../../../../core/widgets/w_scale.dart';
+import '../../data/models/event_model.dart';
+import '../bloc/calendar_bloc.dart';
 
 class AddEventPage extends StatefulWidget {
   const AddEventPage({super.key, required this.selectedDate});
@@ -49,11 +53,13 @@ class _AddEventPageState extends State<AddEventPage> {
         context: context,
         builder: (dialogContext) => AlertDialog(
           actionsPadding: const EdgeInsets.all(4),
-          content: const Text('Do you want to discard all the changes?'),
+          content:
+              const Text('Do you want to discard all the changes and exit?'),
           actions: [
             TextButton(
-                onPressed: () => Navigator.pop(dialogContext),
-                child: const Text('No')),
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('No'),
+            ),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -202,7 +208,33 @@ class _AddEventPageState extends State<AddEventPage> {
                   ),
                 ),
                 onTap: () {
-                  //TODO
+                  print(widget.selectedDate.toIso8601String());
+
+                  final EventModel model = EventModel(
+                    day: widget.selectedDate.toIso8601String(),
+                    name: eventNameController.text,
+                    description: eventDescriptionController.text,
+                    time: '',
+                    location: eventLocationController.text,
+                    colorIndex: colorIndex,
+                  );
+                  context.read<CalendarBloc>().add(
+                        CalendarEvent.addNewEvent(
+                          model: model,
+                          onFailure: (error) {
+                            context
+                                .read<ShowPopUpBloc>()
+                                .add(ShowPopUpEvent.showFailure(text: error));
+                          },
+                          onSuccess: () {
+                            Navigator.pop(context);
+                            context.read<ShowPopUpBloc>().add(
+                                  ShowPopUpEvent.showSuccess(
+                                      text: 'New event successfully added'),
+                                );
+                          },
+                        ),
+                      );
                 },
               ),
             ],

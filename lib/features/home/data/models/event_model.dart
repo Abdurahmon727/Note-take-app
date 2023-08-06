@@ -1,5 +1,5 @@
 class EventModel {
-  final int id;
+  final int? id;
   final String name;
   final String description;
   final String day;
@@ -7,8 +7,8 @@ class EventModel {
   final String location;
   final int colorIndex;
   EventModel({
+    this.id,
     required this.day,
-    this.id = 1,
     required this.name,
     required this.description,
     required this.time,

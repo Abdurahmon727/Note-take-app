@@ -14,6 +14,7 @@ import 'features/home/presentaion/home_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DatabaseService().database;
+
   runApp(const MyApp());
 }
 
@@ -51,7 +52,7 @@ class _MyAppState extends State<MyApp> {
                 state.popUpType == PopUpType.warning) {
               showSimpleNotification(
                 WPopUp(
-                  color: Colors.orangeAccent,
+                  color: orange,
                   text: state.warningText,
                 ),
                 elevation: 0,
@@ -63,7 +64,7 @@ class _MyAppState extends State<MyApp> {
                 state.popUpType == PopUpType.success) {
               showSimpleNotification(
                 WPopUp(
-                  color: Colors.green,
+                  color: green,
                   text: state.successText,
                 ),
                 elevation: 0,
@@ -75,10 +76,11 @@ class _MyAppState extends State<MyApp> {
           },
           child: OverlaySupport.global(
             child: MaterialApp(
-                theme: AppTheme.lightTheme(),
-                darkTheme: AppTheme.darkTheme(),
-                themeMode: ThemeMode.light,
-                home: const HomePage()),
+              theme: AppTheme.lightTheme(),
+              darkTheme: AppTheme.darkTheme(),
+              themeMode: ThemeMode.light,
+              home: const HomePage(),
+            ),
           ),
         );
       }),
