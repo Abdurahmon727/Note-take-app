@@ -1,45 +1,91 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'widgets/calendar.dart';
+import '../../../assets/colors.dart';
+import '../../../core/navigator.dart';
+import '../../../core/widgets/w_button.dart';
+import 'bloc/calendar_bloc.dart';
+import 'pages/add_event_page.dart';
+import 'widgets/calendar_body.dart';
+import 'widgets/calendar_header.dart';
 import 'widgets/home_bar.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 28),
-          children: const [
-            WHomeBar(),
-            WCalendar(),
-          ],
+        child: BlocBuilder<CalendarBloc, CalendarState>(
+          builder: (context, state) {
+            if (state.selectedMonth == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            final selectedMonth = state.selectedMonth!;
+            final selectedDate = state.selectedDate;
+            return ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 28),
+              children: [
+                const WHomeBar(),
+                SizedBox(
+                  height: 320,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      WCalendarHeader(
+                          selectedMonth: selectedMonth,
+                          onChange: (value) => context
+                              .read<CalendarBloc>()
+                              .add(CalendarEvent.changeSelectedMonth(value))),
+                      Expanded(
+                        child: WCalendarBody(
+                          selectedDate: selectedDate,
+                          selectedMonth: selectedMonth,
+                          selectDate: (value) => context
+                              .read<CalendarBloc>()
+                              .add(CalendarEvent.changeSelectedDate(value)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Schedule',
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    ),
+                    const Spacer(),
+                    WButton(
+                      borderRadius: 10,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 8),
+                      height: 30,
+                      color: blue,
+                      onTap: () => Navigator.push(
+                        context,
+                        cupertino(
+                          page: const AddEventPage(),
+                        ),
+                      ),
+                      child: const Text(
+                        '+ Add Event',
+                        style: TextStyle(
+                          color: white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
-  }
-}
-
-extension DateTimeExt on DateTime {
-  DateTime get monthStart => DateTime(year, month);
-  DateTime get dayStart => DateTime(year, month, day);
-
-  DateTime addMonth(int count) {
-    return DateTime(year, month + count, day);
-  }
-
-  bool isSameDate(DateTime date) {
-    return year == date.year && month == date.month && day == date.day;
-  }
-
-  bool get isToday {
-    return isSameDate(DateTime.now());
   }
 }

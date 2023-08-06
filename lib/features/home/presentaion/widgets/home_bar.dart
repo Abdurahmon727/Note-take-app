@@ -42,10 +42,11 @@ class _WHomeBarState extends State<WHomeBar> {
           ],
         ),
         WScaleAnimation(
-            onTap: () {
-              //TODO
-            },
-            child: SvgPicture.asset(AppIcons.ring)),
+          onTap: () {
+            //TODO
+          },
+          child: SvgPicture.asset(AppIcons.ring),
+        ),
       ],
     );
   }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../../../../assets/colors.dart';
-import '../home_page.dart';
+import '../../../../core/data/date_time.dart';
 
 class WCalendarItem extends StatelessWidget {
   const WCalendarItem({
     super.key,
     required this.hasRightBorder,
     required this.isActiveMonth,
+    required this.isSelected,
     required this.date,
     required this.onTap,
   });
@@ -15,6 +16,7 @@ class WCalendarItem extends StatelessWidget {
   final bool hasRightBorder;
   final bool isActiveMonth;
   final VoidCallback onTap;
+  final bool isSelected;
 
   final DateTime date;
   @override
@@ -32,39 +34,42 @@ class WCalendarItem extends StatelessWidget {
             alignment: Alignment.center,
             height: 25,
             width: 25,
-            decoration: isToday
-                ? BoxDecoration(
-                    color: blue,
-                    borderRadius: BorderRadius.circular(30),
-                  )
-                : null,
+            decoration: isSelected
+                ? const BoxDecoration(color: blue, shape: BoxShape.circle)
+                : isToday
+                    ? BoxDecoration(
+                        border: Border.all(color: red),
+                        borderRadius: BorderRadius.circular(30),
+                      )
+                    : null,
             child: Text(
               number.toString(),
               style: TextStyle(
-                  fontSize: 14,
-                  color: isToday
-                      ? white
-                      : isPassed
-                          ? isActiveMonth
-                              ? greyText
-                              : Colors.transparent
-                          : isActiveMonth
-                              ? null
-                              : greyText),
+                fontSize: 14,
+                color: isSelected
+                    ? white
+                    : isPassed
+                        ? isActiveMonth
+                            ? greyText
+                            : Colors.transparent
+                        : isActiveMonth
+                            ? null
+                            : greyText,
+              ),
             ),
           ),
           const SizedBox(height: 3),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     Container(
-          //       height: 4,
-          //       width: 4,
-          //       decoration:
-          //           const BoxDecoration(color: red, shape: BoxShape.circle),
-          //     )
-          //   ],
-          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                height: 4,
+                width: 4,
+                decoration:
+                    const BoxDecoration(color: red, shape: BoxShape.circle),
+              ),
+            ],
+          ),
           const SizedBox(height: 3),
         ],
       ),
