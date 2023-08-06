@@ -7,4 +7,6 @@ abstract class AppIcons {
   static const back = 'assets/icons/back.svg';
   static const clock = 'assets/icons/clock.svg';
   static const location = 'assets/icons/location.svg';
+  static const edit = 'assets/icons/edit.svg';
+  static const bin = 'assets/icons/bin.svg';
 }
