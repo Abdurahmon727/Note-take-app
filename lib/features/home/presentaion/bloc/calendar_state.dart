@@ -5,5 +5,6 @@ class CalendarState with _$CalendarState {
   factory CalendarState({
     @Default(null) DateTime? selectedMonth,
     @Default(null) DateTime? selectedDate,
+    @Default([]) List<EventModel> models,
   }) = _CalendarState;
 }

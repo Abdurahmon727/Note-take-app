@@ -9,12 +9,16 @@ class WTextField extends StatelessWidget {
     this.maxLines = 1,
     required this.controller,
     this.margin = const EdgeInsets.symmetric(vertical: 16),
+    this.onTap,
+    this.isReadOnly = false,
   });
 
   final String title;
   final int? maxLines;
   final TextEditingController controller;
   final EdgeInsetsGeometry margin;
+  final VoidCallback? onTap;
+  final bool isReadOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,8 @@ class WTextField extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           TextField(
+            readOnly: isReadOnly,
+            onTap: onTap,
             controller: controller,
             maxLines: maxLines,
             textInputAction: TextInputAction.next,

@@ -473,6 +473,7 @@ abstract class _ChangeSelectedDate implements CalendarEvent {
 mixin _$CalendarState {
   DateTime? get selectedMonth => throw _privateConstructorUsedError;
   DateTime? get selectedDate => throw _privateConstructorUsedError;
+  List<EventModel> get models => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CalendarStateCopyWith<CalendarState> get copyWith =>
@@ -485,7 +486,10 @@ abstract class $CalendarStateCopyWith<$Res> {
           CalendarState value, $Res Function(CalendarState) then) =
       _$CalendarStateCopyWithImpl<$Res, CalendarState>;
   @useResult
-  $Res call({DateTime? selectedMonth, DateTime? selectedDate});
+  $Res call(
+      {DateTime? selectedMonth,
+      DateTime? selectedDate,
+      List<EventModel> models});
 }
 
 /// @nodoc
@@ -503,6 +507,7 @@ class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
   $Res call({
     Object? selectedMonth = freezed,
     Object? selectedDate = freezed,
+    Object? models = null,
   }) {
     return _then(_value.copyWith(
       selectedMonth: freezed == selectedMonth
@@ -513,6 +518,10 @@ class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
           ? _value.selectedDate
           : selectedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      models: null == models
+          ? _value.models
+          : models // ignore: cast_nullable_to_non_nullable
+              as List<EventModel>,
     ) as $Val);
   }
 }
@@ -525,7 +534,10 @@ abstract class _$$_CalendarStateCopyWith<$Res>
       __$$_CalendarStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime? selectedMonth, DateTime? selectedDate});
+  $Res call(
+      {DateTime? selectedMonth,
+      DateTime? selectedDate,
+      List<EventModel> models});
 }
 
 /// @nodoc
@@ -541,6 +553,7 @@ class __$$_CalendarStateCopyWithImpl<$Res>
   $Res call({
     Object? selectedMonth = freezed,
     Object? selectedDate = freezed,
+    Object? models = null,
   }) {
     return _then(_$_CalendarState(
       selectedMonth: freezed == selectedMonth
@@ -551,6 +564,10 @@ class __$$_CalendarStateCopyWithImpl<$Res>
           ? _value.selectedDate
           : selectedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      models: null == models
+          ? _value._models
+          : models // ignore: cast_nullable_to_non_nullable
+              as List<EventModel>,
     ));
   }
 }
@@ -558,7 +575,11 @@ class __$$_CalendarStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CalendarState implements _CalendarState {
-  _$_CalendarState({this.selectedMonth = null, this.selectedDate = null});
+  _$_CalendarState(
+      {this.selectedMonth = null,
+      this.selectedDate = null,
+      final List<EventModel> models = const []})
+      : _models = models;
 
   @override
   @JsonKey()
@@ -566,10 +587,18 @@ class _$_CalendarState implements _CalendarState {
   @override
   @JsonKey()
   final DateTime? selectedDate;
+  final List<EventModel> _models;
+  @override
+  @JsonKey()
+  List<EventModel> get models {
+    if (_models is EqualUnmodifiableListView) return _models;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_models);
+  }
 
   @override
   String toString() {
-    return 'CalendarState(selectedMonth: $selectedMonth, selectedDate: $selectedDate)';
+    return 'CalendarState(selectedMonth: $selectedMonth, selectedDate: $selectedDate, models: $models)';
   }
 
   @override
@@ -580,11 +609,13 @@ class _$_CalendarState implements _CalendarState {
             (identical(other.selectedMonth, selectedMonth) ||
                 other.selectedMonth == selectedMonth) &&
             (identical(other.selectedDate, selectedDate) ||
-                other.selectedDate == selectedDate));
+                other.selectedDate == selectedDate) &&
+            const DeepCollectionEquality().equals(other._models, _models));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedMonth, selectedDate);
+  int get hashCode => Object.hash(runtimeType, selectedMonth, selectedDate,
+      const DeepCollectionEquality().hash(_models));
 
   @JsonKey(ignore: true)
   @override
@@ -596,12 +627,15 @@ class _$_CalendarState implements _CalendarState {
 abstract class _CalendarState implements CalendarState {
   factory _CalendarState(
       {final DateTime? selectedMonth,
-      final DateTime? selectedDate}) = _$_CalendarState;
+      final DateTime? selectedDate,
+      final List<EventModel> models}) = _$_CalendarState;
 
   @override
   DateTime? get selectedMonth;
   @override
   DateTime? get selectedDate;
+  @override
+  List<EventModel> get models;
   @override
   @JsonKey(ignore: true)
   _$$_CalendarStateCopyWith<_$_CalendarState> get copyWith =>

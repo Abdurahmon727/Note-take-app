@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:udevs_task/core/data/date_time.dart';
+import 'package:udevs_task/features/home/data/models/event_model.dart';
 
 part 'calendar_event.dart';
 part 'calendar_state.dart';

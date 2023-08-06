@@ -1,29 +1,81 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:udevs_task/assets/constants.dart';
+
+import '../../../../assets/colors.dart';
+import '../../../../assets/constants.dart';
 import '../../../../assets/icons.dart';
+import '../../../../core/widgets/text_field.dart';
 import '../../../../core/widgets/w_button.dart';
 import '../../../../core/widgets/w_scale.dart';
 
-import '../../../../assets/colors.dart';
-import '../../../../core/widgets/text_field.dart';
-
 class AddEventPage extends StatefulWidget {
-  const AddEventPage({super.key});
-
+  const AddEventPage({super.key, required this.selectedDate});
+  final DateTime selectedDate;
   @override
   State<AddEventPage> createState() => _AddEventPageState();
 }
 
 class _AddEventPageState extends State<AddEventPage> {
+  late final TextEditingController eventNameController;
+  late final TextEditingController eventDescriptionController;
+  late final TextEditingController eventLocationController;
+
+  int colorIndex = 0;
+
+  @override
+  void initState() {
+    eventNameController = TextEditingController();
+    eventDescriptionController = TextEditingController();
+    eventLocationController = TextEditingController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    eventNameController.dispose();
+    eventDescriptionController.dispose();
+    eventLocationController.dispose();
+
+    super.dispose();
+  }
+
+  Future<bool> willExit() async {
+    if (eventNameController.text.isNotEmpty ||
+        eventDescriptionController.text.isNotEmpty ||
+        eventLocationController.text.isNotEmpty) {
+      showDialog(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          actionsPadding: const EdgeInsets.all(4),
+          content: const Text('Do you want to discard all the changes?'),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: const Text('No')),
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'Yes',
+                  style: TextStyle(color: greyText),
+                ))
+          ],
+        ),
+      );
+      return false;
+    }
+    Navigator.pop(context);
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        //TODO
-        return true;
-      },
+      onWillPop: () => willExit(),
       child: Scaffold(
         body: SafeArea(
           child: Column(
@@ -37,9 +89,7 @@ class _AddEventPageState extends State<AddEventPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         WScaleAnimation(
-                          onTap: () {
-                            //TODO
-                          },
+                          onTap: () => willExit(),
                           child: Padding(
                             padding: const EdgeInsets.all(16),
                             child: SvgPicture.asset(
@@ -50,20 +100,20 @@ class _AddEventPageState extends State<AddEventPage> {
                         ),
                         WTextField(
                           title: 'Event name',
-                          controller: TextEditingController(),
+                          controller: eventNameController,
                         ),
                         WTextField(
                           title: 'Event description',
-                          controller: TextEditingController(),
+                          controller: eventDescriptionController,
                           maxLines: 6,
                         ),
                         WTextField(
                           title: 'Event location',
-                          controller: TextEditingController(),
+                          controller: eventLocationController,
                         ),
                         DropdownButtonHideUnderline(
                           child: DropdownButton<int>(
-                            value: 0,
+                            value: colorIndex,
                             items:
                                 AppConstants.todoLightColors.map((Color color) {
                               return DropdownMenuItem<int>(
@@ -80,11 +130,59 @@ class _AddEventPageState extends State<AddEventPage> {
                                 ),
                               );
                             }).toList(),
-                            onChanged: (selectedColor) {},
+                            onChanged: (selectedColorIndex) {
+                              if (selectedColorIndex != null) {
+                                colorIndex = selectedColorIndex;
+                                setState(() {});
+                              }
+                            },
                           ),
                         ),
                         WTextField(
                           title: 'Event time',
+                          isReadOnly: true,
+                          onTap: () {
+                            //TODO
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext builder) {
+                                return Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      height: MediaQuery.of(context)
+                                              .copyWith()
+                                              .size
+                                              .height /
+                                          3,
+                                      child: CupertinoDatePicker(
+                                        initialDateTime: DateTime.now(),
+                                        onDateTimeChanged:
+                                            (DateTime newdate) {},
+                                        use24hFormat: true,
+                                        mode: CupertinoDatePickerMode.time,
+                                      ),
+                                    ),
+                                    WButton(
+                                      margin: const EdgeInsets.all(12),
+                                      height: 45,
+                                      child: const Text(
+                                        'Apply',
+                                        style: TextStyle(
+                                          color: white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        //TODO
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
                           controller: TextEditingController(),
                         ),
                       ],
@@ -104,22 +202,6 @@ class _AddEventPageState extends State<AddEventPage> {
                   ),
                 ),
                 onTap: () {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext builder) {
-                        return Container(
-                            height:
-                                MediaQuery.of(context).copyWith().size.height /
-                                    3,
-                            child: CupertinoDatePicker(
-                              initialDateTime: DateTime.now(),
-                              onDateTimeChanged: (DateTime newdate) {
-                                print(newdate);
-                              },
-                              use24hFormat: true,
-                              mode: CupertinoDatePickerMode.date,
-                            ));
-                      });
                   //TODO
                 },
               ),

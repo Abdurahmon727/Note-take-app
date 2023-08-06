@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:udevs_task/core/bloc/show_pop_up/show_pop_up_bloc.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/navigator.dart';
@@ -69,10 +70,21 @@ class HomePage extends StatelessWidget {
                             ),
                             height: 30,
                             color: blue,
-                            onTap: () => Navigator.push(
-                              context,
-                              cupertino(page: const AddEventPage()),
-                            ),
+                            onTap: () {
+                              if (selectedDate != null) {
+                                Navigator.push(
+                                  context,
+                                  cupertino(
+                                      page: AddEventPage(
+                                          selectedDate: selectedDate)),
+                                );
+                              } else {
+                                context.read<ShowPopUpBloc>().add(
+                                    ShowPopUpEvent.showWarning(
+                                        text:
+                                            'Please choose a day to create an event'));
+                              }
+                            },
                             child: const Text(
                               '+ Add Event',
                               style: TextStyle(
