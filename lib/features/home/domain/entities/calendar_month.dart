@@ -8,7 +8,7 @@ class CalendarMonthData {
   final int month;
 
   int get daysInMonth => DateUtils.getDaysInMonth(year, month);
-  int get firstDayOfWeekIndex => 0;
+  int get firstDayOfWeekIndex => 6;
 
   int get weeksCount => ((daysInMonth + firstDayOffset) / 7).ceil();
 

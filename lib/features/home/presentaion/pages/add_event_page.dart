@@ -26,6 +26,8 @@ class _AddEventPageState extends State<AddEventPage> {
   late final TextEditingController eventLocationController;
 
   int colorIndex = 0;
+  String eventTime = '';
+  Duration duration = const Duration(seconds: 0);
 
   @override
   void initState() {
@@ -152,6 +154,7 @@ class _AddEventPageState extends State<AddEventPage> {
                             showModalBottomSheet(
                               context: context,
                               builder: (BuildContext builder) {
+                                DateTime selectedTime = DateTime.now();
                                 return Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -162,9 +165,11 @@ class _AddEventPageState extends State<AddEventPage> {
                                               .height /
                                           3,
                                       child: CupertinoDatePicker(
-                                        initialDateTime: DateTime.now(),
-                                        onDateTimeChanged:
-                                            (DateTime newdate) {},
+                                        initialDateTime: eventTime.isNotEmpty
+                                            ? DateTime.now().copyWith() //TODO
+                                            : DateTime.now(),
+                                        onDateTimeChanged: (newdate) =>
+                                            selectedTime = newdate,
                                         use24hFormat: true,
                                         mode: CupertinoDatePickerMode.time,
                                       ),
@@ -181,7 +186,10 @@ class _AddEventPageState extends State<AddEventPage> {
                                         ),
                                       ),
                                       onTap: () {
-                                        //TODO
+                                        eventTime =
+                                            '${selectedTime.hour}:${selectedTime.minute}';
+                                        setState(() {});
+                                        Navigator.pop(context);
                                       },
                                     ),
                                   ],
@@ -189,7 +197,7 @@ class _AddEventPageState extends State<AddEventPage> {
                               },
                             );
                           },
-                          controller: TextEditingController(),
+                          controller: TextEditingController(text: eventTime),
                         ),
                       ],
                     ),

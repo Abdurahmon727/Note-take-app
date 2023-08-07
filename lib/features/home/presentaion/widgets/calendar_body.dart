@@ -46,7 +46,7 @@ class WCalendarBody extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            for (var week in data.weeks)
+            for (final week in data.weeks)
               Row(
                 children: week.map((d) {
                   return Expanded(

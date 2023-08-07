@@ -5,13 +5,13 @@ import 'colors.dart';
 abstract class AppConstants {
   AppConstants._();
   static List<String> daysOfWeekWords = [
+    'Sun',
     'Mon',
     'Tue',
     'Wed',
     'Thu',
     'Fri',
     'Sat',
-    'Sun'
   ];
   static List<Color> todoLightColors = [
     blue,
