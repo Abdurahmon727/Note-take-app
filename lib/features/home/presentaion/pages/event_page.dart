@@ -142,20 +142,20 @@ class EventPage extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.all(28),
                   children: [
-                    const Text(
-                      'Remainder',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      '15 minuted before',
-                      style: TextStyle(
-                          color: darkGreyText,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    const SizedBox(height: 22),
+                    // const Text(
+                    //   'Remainder',
+                    //   style:
+                    //       TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    // ),
+                    // const SizedBox(height: 10),
+                    // const Text(
+                    //   '15 minuted before',
+                    //   style: TextStyle(
+                    //       color: darkGreyText,
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.w500),
+                    // ),
+                    // const SizedBox(height: 22),
                     if (model.description.isNotEmpty)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
