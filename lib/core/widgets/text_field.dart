@@ -12,6 +12,7 @@ class WTextField extends StatelessWidget {
     this.onTap,
     this.isReadOnly = false,
     this.textInputAction = TextInputAction.next,
+    this.maxLength,
   });
 
   final String title;
@@ -21,6 +22,7 @@ class WTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final bool isReadOnly;
   final TextInputAction textInputAction;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class WTextField extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           TextField(
+            maxLength: maxLength,
             readOnly: isReadOnly,
             onTap: onTap,
             controller: controller,
@@ -44,6 +47,7 @@ class WTextField extends StatelessWidget {
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               fillColor: greyBackground,
+              counterText: '',
               filled: true,
               focusedBorder: OutlineInputBorder(
                 borderSide:

@@ -1,11 +1,9 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:udevs_task/assets/constants.dart';
-import 'package:udevs_task/assets/icons.dart';
-import 'package:udevs_task/core/widgets/w_button.dart';
-import 'package:udevs_task/core/widgets/w_scale.dart';
+import '../../../../assets/constants.dart';
+import '../../../../assets/icons.dart';
+import '../../../../core/widgets/w_button.dart';
+import '../../../../core/widgets/w_scale.dart';
 
 import '../../../../assets/colors.dart';
 import '../../data/models/event_model.dart';
@@ -75,13 +73,16 @@ class EventPage extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Text(
-                    model.description,
-                    style: const TextStyle(
-                        color: white, fontSize: 8, fontWeight: FontWeight.w400),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  if (model.description.isNotEmpty)
+                    Text(
+                      model.description,
+                      style: const TextStyle(
+                          color: white,
+                          fontSize: 8,
+                          fontWeight: FontWeight.w400),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   if (model.time.isNotEmpty)
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
@@ -99,7 +100,7 @@ class EventPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (model.time.isNotEmpty)
+                  if (model.location.isNotEmpty)
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Row(
@@ -124,7 +125,40 @@ class EventPage extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(28),
-              children: [],
+              children: [
+                const Text(
+                  'Remainder',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  '15 minuted before',
+                  style: TextStyle(
+                      color: darkGreyText,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(height: 22),
+                if (model.description.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Description',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        model.description,
+                        style: const TextStyle(
+                            color: greyText,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  )
+              ],
             ),
           ),
           WButton(

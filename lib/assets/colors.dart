@@ -12,6 +12,7 @@ const darkBlue = _darkBlue;
 const darkOrange = _darkOrange;
 const darkRed = _darkRed;
 const green = _green;
+const darkGreyText = _darkGrey;
 
 /// colors palatee: http://www.color-blindness.com/color-name-hue/
 const _white = Color(0XFFFFFFFF);
@@ -26,6 +27,7 @@ const _green = Color(0xFF008000);
 const _darkBlue = Color(0xFF056EA1);
 const _darkOrange = Color(0xFFB86E00);
 const _darkRed = Color(0xFFBF2200);
+const _darkGrey = Color(0xFF7C7B7B);
 
 /// Unnamed colors
 

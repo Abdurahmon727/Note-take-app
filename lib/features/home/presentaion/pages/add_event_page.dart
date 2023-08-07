@@ -111,6 +111,7 @@ class _AddEventPageState extends State<AddEventPage> {
                           ),
                           WTextField(
                             title: 'Event name',
+                            maxLength: 50,
                             controller: eventNameController,
                           ),
                           WTextField(
@@ -186,8 +187,13 @@ class _AddEventPageState extends State<AddEventPage> {
                                         ),
                                       ),
                                       onTap: () {
-                                        eventTime =
-                                            '${selectedTime.hour}:${selectedTime.minute}';
+                                        final hour = selectedTime.hour < 10
+                                            ? '0${selectedTime.hour}'
+                                            : selectedTime.hour.toString();
+                                        final min = selectedTime.minute < 10
+                                            ? '0${selectedTime.minute}'
+                                            : selectedTime.minute.toString();
+                                        eventTime = '$hour:$min';
                                         setState(() {});
                                         Navigator.pop(context);
                                       },
