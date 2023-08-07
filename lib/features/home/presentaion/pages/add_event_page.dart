@@ -53,9 +53,10 @@ class _AddEventPageState extends State<AddEventPage> {
     if (eventNameController.text.isNotEmpty ||
         eventDescriptionController.text.isNotEmpty ||
         eventLocationController.text.isNotEmpty) {
-      wShowDialog(
+      fShowDialog(
         context: context,
-        content: const Text('Do you want to discard all the changes and exit?'),
+        content:
+            const Text('Do you want to discard all the changes and exit? 😲'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

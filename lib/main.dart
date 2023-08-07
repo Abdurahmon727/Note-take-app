@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           listener: (context, state) {
             if (state.showPopUp && state.popUpType == PopUpType.error) {
               showSimpleNotification(
-                WPopUp(color: red, text: state.errorText),
+                WPopUp(color: red.withOpacity(0.5), text: state.errorText),
                 elevation: 0,
                 background: Colors.transparent,
                 autoDismiss: true,

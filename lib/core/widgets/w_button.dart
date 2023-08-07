@@ -66,7 +66,7 @@ class WButton extends StatelessWidget {
                     Text(
                       text,
                       style: textStyle ??
-                          Theme.of(context).textTheme.headline3!.copyWith(
+                          Theme.of(context).textTheme.bodySmall!.copyWith(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: textColor,

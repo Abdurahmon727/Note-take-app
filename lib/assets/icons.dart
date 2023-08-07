@@ -9,4 +9,5 @@ abstract class AppIcons {
   static const location = 'assets/icons/location.svg';
   static const edit = 'assets/icons/edit.svg';
   static const bin = 'assets/icons/bin.svg';
+  static const bottomArrow = 'assets/icons/bottom_arrow.svg';
 }

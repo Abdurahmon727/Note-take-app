@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void wShowDialog({
+void fShowDialog({
   required BuildContext context,
   required Widget content,
   required List<Widget> actions,

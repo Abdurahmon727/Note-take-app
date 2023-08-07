@@ -173,9 +173,9 @@ class EventPage extends StatelessWidget {
             height: 50,
             color: red.withOpacity(0.2),
             onTap: () {
-              wShowDialog(
+              fShowDialog(
                   context: context,
-                  content: const Text('Are you sure to delete this event'),
+                  content: const Text('Are you sure to delete this event? 🧐'),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),

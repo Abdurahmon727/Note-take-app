@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../assets/icons.dart';
 import '../../../../core/app_functions.dart';
+import '../../../../core/widgets/bottom_sheet.dart';
 import '../../../../core/widgets/w_scale.dart';
+import '../bloc/calendar_bloc.dart';
 
 class WHomeBar extends StatelessWidget {
   const WHomeBar({
@@ -20,19 +23,53 @@ class WHomeBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const SizedBox(width: 28),
-          Column(
-            children: [
-              Text(
-                AppFunctions.getDayOfWeek(selectedDate.weekday),
-                style:
-                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                '${selectedDate.day} ${AppFunctions.getMonth(selectedDate.month)} ${selectedDate.year}',
-                style:
-                    const TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-              ),
-            ],
+          WScaleAnimation(
+            onTap: () {
+              DateTime selectedDate = DateTime.now();
+              fShowBottomSheet(
+                  context: context,
+                  onTapButton: () {
+                    Navigator.pop(context);
+                    context
+                        .read<CalendarBloc>()
+                        .add(CalendarEvent.changeSelectedMonth(selectedDate));
+                    context
+                        .read<CalendarBloc>()
+                        .add(CalendarEvent.changeSelectedDate(selectedDate));
+                  },
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).copyWith().size.height / 3,
+                      child: CupertinoDatePicker(
+                        initialDateTime:
+                            context.read<CalendarBloc>().state.selectedDate,
+                        onDateTimeChanged: (newdate) => selectedDate = newdate,
+                        use24hFormat: true,
+                        mode: CupertinoDatePickerMode.date,
+                      ),
+                    )
+                  ]);
+            },
+            child: Column(
+              children: [
+                Text(
+                  AppFunctions.getDayOfWeek(selectedDate.weekday),
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w600),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '${selectedDate.day} ${AppFunctions.getMonth(selectedDate.month)} ${selectedDate.year}',
+                      style: const TextStyle(
+                          fontSize: 10, fontWeight: FontWeight.w400),
+                    ),
+                    const SizedBox(width: 4),
+                    SvgPicture.asset(AppIcons.bottomArrow)
+                  ],
+                ),
+              ],
+            ),
           ),
           WScaleAnimation(
             onTap: () {
