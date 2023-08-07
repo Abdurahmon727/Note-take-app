@@ -127,6 +127,7 @@ class _AddEventPageState extends State<AddEventPage> {
                           ),
                           WTextField(
                             title: 'Event description',
+                            textInputAction: TextInputAction.newline,
                             controller: eventDescriptionController,
                             maxLines: 6,
                           ),

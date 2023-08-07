@@ -11,6 +11,7 @@ class WTextField extends StatelessWidget {
     this.margin = const EdgeInsets.symmetric(vertical: 16),
     this.onTap,
     this.isReadOnly = false,
+    this.textInputAction = TextInputAction.next,
   });
 
   final String title;
@@ -19,6 +20,7 @@ class WTextField extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final VoidCallback? onTap;
   final bool isReadOnly;
+  final TextInputAction textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class WTextField extends StatelessWidget {
             onTap: onTap,
             controller: controller,
             maxLines: maxLines,
-            textInputAction: TextInputAction.next,
+            textInputAction: textInputAction,
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
