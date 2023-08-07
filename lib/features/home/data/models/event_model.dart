@@ -1,13 +1,15 @@
-class EventModel {
-  final int id;
+import 'package:equatable/equatable.dart';
+
+class EventModel extends Equatable {
+  final int? id;
   final String name;
   final String description;
   final String day;
   final String time;
   final String location;
   final int colorIndex;
-  EventModel({
-    this.id = 1,
+  const EventModel({
+    this.id,
     required this.day,
     required this.name,
     required this.description,
@@ -39,4 +41,15 @@ class EventModel {
       colorIndex: map['colorIndex'] as int,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        description,
+        day,
+        time,
+        location,
+        colorIndex,
+      ];
 }

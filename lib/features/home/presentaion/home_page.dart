@@ -112,7 +112,8 @@ class HomePage extends StatelessWidget {
                                 shrinkWrap: true,
                                 primary: false,
                                 itemBuilder: (context, index) {
-                                  return WEventPreview(model: models[index]);
+                                  return WEventPreview(
+                                      model: models[index], index: index);
                                 },
                                 separatorBuilder: (_, __) =>
                                     const SizedBox(height: 14),

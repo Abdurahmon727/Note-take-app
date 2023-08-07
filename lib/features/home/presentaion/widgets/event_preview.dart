@@ -11,8 +11,10 @@ class WEventPreview extends StatelessWidget {
   const WEventPreview({
     super.key,
     required this.model,
+    required this.index,
   });
   final EventModel model;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class WEventPreview extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        material(page: EventPage(model: model)),
+        material(page: EventPage(index: index)),
       ),
       child: Stack(
         alignment: Alignment.topCenter,

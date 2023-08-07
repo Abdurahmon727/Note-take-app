@@ -16,26 +16,28 @@ import '../../../../core/widgets/w_scale.dart';
 import '../../data/models/event_model.dart';
 import '../bloc/calendar_bloc.dart';
 
-class AddEventPage extends StatefulWidget {
-  const AddEventPage({super.key, required this.selectedDate});
-  final DateTime selectedDate;
+class EditAnEventPage extends StatefulWidget {
+  const EditAnEventPage({super.key, required this.model});
+  final EventModel model;
   @override
-  State<AddEventPage> createState() => _AddEventPageState();
+  State<EditAnEventPage> createState() => _EditAnEventPageState();
 }
 
-class _AddEventPageState extends State<AddEventPage> {
+class _EditAnEventPageState extends State<EditAnEventPage> {
   late final TextEditingController eventNameController;
   late final TextEditingController eventDescriptionController;
   late final TextEditingController eventLocationController;
-
-  int colorIndex = 0;
-  String eventTime = '';
+  late int colorIndex;
+  late String eventTime;
 
   @override
   void initState() {
-    eventNameController = TextEditingController();
-    eventDescriptionController = TextEditingController();
-    eventLocationController = TextEditingController();
+    final model = widget.model;
+    eventNameController = TextEditingController(text: model.name);
+    eventDescriptionController = TextEditingController(text: model.description);
+    eventLocationController = TextEditingController(text: model.location);
+    eventTime = model.time;
+    colorIndex = model.colorIndex;
 
     super.initState();
   }
@@ -50,9 +52,11 @@ class _AddEventPageState extends State<AddEventPage> {
   }
 
   Future<bool> willExit() async {
-    if (eventNameController.text.isNotEmpty ||
-        eventDescriptionController.text.isNotEmpty ||
-        eventLocationController.text.isNotEmpty) {
+    if (eventNameController.text != widget.model.name ||
+        eventDescriptionController.text != widget.model.description ||
+        eventLocationController.text != widget.model.location ||
+        eventTime != widget.model.time ||
+        colorIndex != widget.model.colorIndex) {
       fShowDialog(
         context: context,
         content:
@@ -204,8 +208,9 @@ class _AddEventPageState extends State<AddEventPage> {
                   ),
                   onTap: () {
                     if (eventNameController.text.isNotEmpty) {
-                      final EventModel model = EventModel(
-                        day: widget.selectedDate.toIso8601String(),
+                      final EventModel newModel = EventModel(
+                        id: widget.model.id,
+                        day: widget.model.day,
                         name: eventNameController.text,
                         description: eventDescriptionController.text,
                         time: eventTime,
@@ -213,8 +218,8 @@ class _AddEventPageState extends State<AddEventPage> {
                         colorIndex: colorIndex,
                       );
                       context.read<CalendarBloc>().add(
-                            CalendarEvent.addNewEvent(
-                              model: model,
+                            CalendarEvent.editAnEvent(
+                              newModel: newModel,
                               onFailure: (error) {
                                 context.read<ShowPopUpBloc>().add(
                                     ShowPopUpEvent.showFailure(text: error));
@@ -223,8 +228,7 @@ class _AddEventPageState extends State<AddEventPage> {
                                 Navigator.pop(context);
                                 context.read<ShowPopUpBloc>().add(
                                       ShowPopUpEvent.showSuccess(
-                                          text:
-                                              'New event successfully added 👌'),
+                                          text: 'Event successfully edited 👌'),
                                     );
                               },
                             ),

@@ -31,23 +31,27 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
       if (state.selectedDate != event.newDate) {
         final result =
             await _repository.getEvents(event.newDate.toIso8601String());
-        result.either((fail) {
-          emit(state.copyWith(
-              selectedDate: event.newDate,
-              status: FormzStatus.submissionFailure));
-        }, (success) {
-          emit(state.copyWith(
+        result.either(
+          (fail) {
+            emit(state.copyWith(
+                selectedDate: event.newDate,
+                status: FormzStatus.submissionFailure));
+          },
+          (success) {
+            emit(state.copyWith(
               selectedDate: event.newDate,
               status: FormzStatus.submissionSuccess,
-              models: success));
-        });
+              models: success,
+            ));
+          },
+        );
       }
     });
 
     on<_AddEvent>((event, emit) async {
       final currentModels = state.models;
       emit(state.copyWith(models: currentModels + [event.model]));
-      final result = await _repository.addNewEvent(event.model);
+      final result = await _repository.addAnEvent(event.model);
       result.either((value) {
         event.onFailure(value.errorMessage);
       }, (_) {
@@ -61,13 +65,29 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
         newModels.remove(event.model);
         emit(state.copyWith(models: newModels));
 
-        final result = await _repository.deleteAnEvent(event.model.id);
+        final result = await _repository.deleteAnEvent(event.model.id!);
         result.either((value) {
           event.onFailure(value.errorMessage);
         }, (_) {
           event.onSuccess();
         });
       }
+    });
+
+    on<_EditAnEvent>((event, emit) async {
+      final result = await sl<HomeRepository>().editAnEvent(event.newModel);
+      result.either((fail) {
+        event.onFailure(fail.errorMessage);
+      }, (value) {
+        final index = state.models.indexWhere((e) => e.id == event.newModel.id);
+
+        if (index != -1) {
+          final List<EventModel> newModels = List.from(state.models);
+          newModels[index] = event.newModel;
+          emit(state.copyWith(models: newModels));
+        }
+        event.onSuccess();
+      });
     });
   }
 }

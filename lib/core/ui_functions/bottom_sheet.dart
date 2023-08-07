@@ -3,12 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../assets/colors.dart';
-import 'w_button.dart';
+import '../widgets/w_button.dart';
 
 void fShowBottomSheet({
   required BuildContext context,
   required VoidCallback onTapButton,
   required List<Widget> children,
+  String buttonTitle = 'Apply',
 }) =>
     showModalBottomSheet(
       context: context,
@@ -22,9 +23,9 @@ void fShowBottomSheet({
                   margin: const EdgeInsets.all(12),
                   height: 45,
                   onTap: onTapButton,
-                  child: const Text(
-                    'Apply',
-                    style: TextStyle(
+                  child: Text(
+                    buttonTitle,
+                    style: const TextStyle(
                       color: white,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,

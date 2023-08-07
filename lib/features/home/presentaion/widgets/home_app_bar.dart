@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../assets/icons.dart';
 import '../../../../core/app_functions.dart';
-import '../../../../core/widgets/bottom_sheet.dart';
+import '../../../../core/ui_functions/bottom_sheet.dart';
 import '../../../../core/widgets/w_scale.dart';
 import '../bloc/calendar_bloc.dart';
 
@@ -28,6 +28,7 @@ class WHomeAppBar extends StatelessWidget {
               DateTime selectedDate = DateTime.now();
               fShowBottomSheet(
                   context: context,
+                  buttonTitle: 'Go',
                   onTapButton: () {
                     Navigator.pop(context);
                     context

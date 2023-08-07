@@ -5,7 +5,6 @@ import 'package:overlay_support/overlay_support.dart';
 import 'assets/colors.dart';
 import 'assets/theme.dart';
 import 'core/bloc/show_pop_up/show_pop_up_bloc.dart';
-import 'core/data/database/database_service.dart';
 import 'core/data/service_locator.dart';
 import 'core/models/popup_types.dart';
 import 'core/widgets/popups.dart';
@@ -14,8 +13,8 @@ import 'features/home/presentaion/home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DatabaseService().database;
-  setupLocator();
+
+  await setupLocator();
 
   runApp(const MyApp());
 }
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
           listener: (context, state) {
             if (state.showPopUp && state.popUpType == PopUpType.error) {
               showSimpleNotification(
-                WPopUp(color: red.withOpacity(0.5), text: state.errorText),
+                WPopUp(color: red, text: state.errorText),
                 elevation: 0,
                 background: Colors.transparent,
                 autoDismiss: true,
