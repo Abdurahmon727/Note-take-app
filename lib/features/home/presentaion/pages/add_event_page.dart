@@ -31,6 +31,12 @@ class _AddEventPageState extends State<AddEventPage> {
   int colorIndex = 0;
   String eventTime = '';
 
+  get isSomeDataEntered =>
+      eventNameController.text.isNotEmpty ||
+      eventDescriptionController.text.isNotEmpty ||
+      eventLocationController.text.isNotEmpty ||
+      eventTime.isNotEmpty;
+
   @override
   void initState() {
     eventNameController = TextEditingController();
@@ -50,9 +56,7 @@ class _AddEventPageState extends State<AddEventPage> {
   }
 
   Future<bool> willExit() async {
-    if (eventNameController.text.isNotEmpty ||
-        eventDescriptionController.text.isNotEmpty ||
-        eventLocationController.text.isNotEmpty) {
+    if (isSomeDataEntered) {
       fShowDialog(
         context: context,
         content:
@@ -153,16 +157,22 @@ class _AddEventPageState extends State<AddEventPage> {
                             title: 'Event time',
                             isReadOnly: true,
                             onTap: () {
-                              DateTime selectedTime = DateTime.now();
+                              DateTime currentTimeAtPicker = (eventTime.isEmpty)
+                                  ? DateTime.now()
+                                  : DateTime.now().copyWith(
+                                      hour:
+                                          int.parse(eventTime.substring(0, 2)),
+                                      minute: int.parse(eventTime.substring(3)),
+                                    );
                               fShowBottomSheet(
                                   context: context,
                                   onTapButton: () {
-                                    final hour = selectedTime.hour < 10
-                                        ? '0${selectedTime.hour}'
-                                        : selectedTime.hour.toString();
-                                    final min = selectedTime.minute < 10
-                                        ? '0${selectedTime.minute}'
-                                        : selectedTime.minute.toString();
+                                    final hour = currentTimeAtPicker.hour < 10
+                                        ? '0${currentTimeAtPicker.hour}'
+                                        : currentTimeAtPicker.hour.toString();
+                                    final min = currentTimeAtPicker.minute < 10
+                                        ? '0${currentTimeAtPicker.minute}'
+                                        : currentTimeAtPicker.minute.toString();
                                     eventTime = '$hour:$min';
                                     setState(() {});
                                     Navigator.pop(context);
@@ -175,9 +185,9 @@ class _AddEventPageState extends State<AddEventPage> {
                                               .height /
                                           3,
                                       child: CupertinoDatePicker(
-                                        initialDateTime: DateTime.now(), //TODO
+                                        initialDateTime: currentTimeAtPicker,
                                         onDateTimeChanged: (newdate) =>
-                                            selectedTime = newdate,
+                                            currentTimeAtPicker = newdate,
                                         use24hFormat: true,
                                         mode: CupertinoDatePickerMode.time,
                                       ),

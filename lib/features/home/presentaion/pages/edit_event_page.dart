@@ -30,6 +30,13 @@ class _EditAnEventPageState extends State<EditAnEventPage> {
   late int colorIndex;
   late String eventTime;
 
+  bool get isEventEdited =>
+      eventNameController.text != widget.model.name ||
+      eventDescriptionController.text != widget.model.description ||
+      eventLocationController.text != widget.model.location ||
+      eventTime != widget.model.time ||
+      colorIndex != widget.model.colorIndex;
+
   @override
   void initState() {
     final model = widget.model;
@@ -52,11 +59,7 @@ class _EditAnEventPageState extends State<EditAnEventPage> {
   }
 
   Future<bool> willExit() async {
-    if (eventNameController.text != widget.model.name ||
-        eventDescriptionController.text != widget.model.description ||
-        eventLocationController.text != widget.model.location ||
-        eventTime != widget.model.time ||
-        colorIndex != widget.model.colorIndex) {
+    if (isEventEdited) {
       fShowDialog(
         context: context,
         content:
@@ -157,16 +160,22 @@ class _EditAnEventPageState extends State<EditAnEventPage> {
                             title: 'Event time',
                             isReadOnly: true,
                             onTap: () {
-                              DateTime selectedTime = DateTime.now();
+                              DateTime currentTimeAtPicker = (eventTime.isEmpty)
+                                  ? DateTime.now()
+                                  : DateTime.now().copyWith(
+                                      hour:
+                                          int.parse(eventTime.substring(0, 2)),
+                                      minute: int.parse(eventTime.substring(3)),
+                                    );
                               fShowBottomSheet(
                                   context: context,
                                   onTapButton: () {
-                                    final hour = selectedTime.hour < 10
-                                        ? '0${selectedTime.hour}'
-                                        : selectedTime.hour.toString();
-                                    final min = selectedTime.minute < 10
-                                        ? '0${selectedTime.minute}'
-                                        : selectedTime.minute.toString();
+                                    final hour = currentTimeAtPicker.hour < 10
+                                        ? '0${currentTimeAtPicker.hour}'
+                                        : currentTimeAtPicker.hour.toString();
+                                    final min = currentTimeAtPicker.minute < 10
+                                        ? '0${currentTimeAtPicker.minute}'
+                                        : currentTimeAtPicker.minute.toString();
                                     eventTime = '$hour:$min';
                                     setState(() {});
                                     Navigator.pop(context);
@@ -179,9 +188,9 @@ class _EditAnEventPageState extends State<EditAnEventPage> {
                                               .height /
                                           3,
                                       child: CupertinoDatePicker(
-                                        initialDateTime: DateTime.now(), //TODO
+                                        initialDateTime: currentTimeAtPicker,
                                         onDateTimeChanged: (newdate) =>
-                                            selectedTime = newdate,
+                                            currentTimeAtPicker = newdate,
                                         use24hFormat: true,
                                         mode: CupertinoDatePickerMode.time,
                                       ),
@@ -199,7 +208,7 @@ class _EditAnEventPageState extends State<EditAnEventPage> {
                   margin: const EdgeInsets.all(16),
                   height: 45,
                   child: const Text(
-                    'Add',
+                    'Save',
                     style: TextStyle(
                       color: white,
                       fontSize: 16,
@@ -208,31 +217,39 @@ class _EditAnEventPageState extends State<EditAnEventPage> {
                   ),
                   onTap: () {
                     if (eventNameController.text.isNotEmpty) {
-                      final EventModel newModel = EventModel(
-                        id: widget.model.id,
-                        day: widget.model.day,
-                        name: eventNameController.text,
-                        description: eventDescriptionController.text,
-                        time: eventTime,
-                        location: eventLocationController.text,
-                        colorIndex: colorIndex,
-                      );
-                      context.read<CalendarBloc>().add(
-                            CalendarEvent.editAnEvent(
-                              newModel: newModel,
-                              onFailure: (error) {
-                                context.read<ShowPopUpBloc>().add(
-                                    ShowPopUpEvent.showFailure(text: error));
-                              },
-                              onSuccess: () {
-                                Navigator.pop(context);
-                                context.read<ShowPopUpBloc>().add(
-                                      ShowPopUpEvent.showSuccess(
-                                          text: 'Event successfully edited 👌'),
-                                    );
-                              },
-                            ),
-                          );
+                      if (isEventEdited) {
+                        final EventModel newModel = EventModel(
+                          id: widget.model.id,
+                          day: widget.model.day,
+                          name: eventNameController.text,
+                          description: eventDescriptionController.text,
+                          time: eventTime,
+                          location: eventLocationController.text,
+                          colorIndex: colorIndex,
+                        );
+                        context.read<CalendarBloc>().add(
+                              CalendarEvent.editAnEvent(
+                                newModel: newModel,
+                                onFailure: (error) {
+                                  context.read<ShowPopUpBloc>().add(
+                                      ShowPopUpEvent.showFailure(text: error));
+                                },
+                                onSuccess: () {
+                                  Navigator.pop(context);
+                                  context.read<ShowPopUpBloc>().add(
+                                        ShowPopUpEvent.showSuccess(
+                                            text:
+                                                'Event successfully edited 👌'),
+                                      );
+                                },
+                              ),
+                            );
+                      } else {
+                        Navigator.pop(context);
+                        context.read<ShowPopUpBloc>().add(
+                            ShowPopUpEvent.showWarning(
+                                text: 'No data changed'));
+                      }
                     } else {
                       context.read<ShowPopUpBloc>().add(
                             ShowPopUpEvent.showWarning(

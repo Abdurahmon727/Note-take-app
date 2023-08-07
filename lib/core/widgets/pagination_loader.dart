@@ -1,4 +1,7 @@
 // import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+
+// import '../../assets/colors.dart';
 
 // class PaginationLoader extends StatelessWidget {
 //   final ScrollPhysics? scrollPhysics;
@@ -52,7 +55,7 @@
 //                     }
 //                   },
 //                   child: !isFailedToLoad
-//                       ? const SpinKitThreeBounce(size: 20, color: black)
+//                       ? const CircularProgressIndicator(strokeWidth: 2, color: black)
 //                       : const SizedBox(),
 //                 )
 //               else
