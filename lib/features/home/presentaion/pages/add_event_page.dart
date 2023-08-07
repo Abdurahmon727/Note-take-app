@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:udevs_task/core/widgets/dialog.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
 import '../../../../assets/icons.dart';
 import '../../../../assets/theme.dart';
 import '../../../../core/bloc/show_pop_up/show_pop_up_bloc.dart';
+import '../../../../core/widgets/dialog.dart';
 import '../../../../core/widgets/text_field.dart';
 import '../../../../core/widgets/w_button.dart';
 import '../../../../core/widgets/w_scale.dart';
@@ -122,6 +122,7 @@ class _AddEventPageState extends State<AddEventPage> {
                           ),
                           WTextField(
                             title: 'Event location',
+                            maxLength: 40,
                             controller: eventLocationController,
                           ),
                           DropdownButtonHideUnderline(
@@ -132,14 +133,10 @@ class _AddEventPageState extends State<AddEventPage> {
                                 return DropdownMenuItem<int>(
                                   value: AppConstants.todoLightColors
                                       .indexOf(color),
-                                  child: SizedBox(
-                                    height: 24,
+                                  child: Container(
                                     width: 24,
-                                    child: Container(
-                                      width: 24,
-                                      height: 24,
-                                      color: color,
-                                    ),
+                                    height: 24,
+                                    color: color,
                                   ),
                                 );
                               }).toList(),

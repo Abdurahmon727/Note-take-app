@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:udevs_task/core/bloc/show_pop_up/show_pop_up_bloc.dart';
+import 'package:udevs_task/core/widgets/dialog.dart';
 import '../../../../assets/constants.dart';
 import '../../../../assets/icons.dart';
 import '../../../../core/widgets/w_button.dart';
@@ -7,6 +10,7 @@ import '../../../../core/widgets/w_scale.dart';
 
 import '../../../../assets/colors.dart';
 import '../../data/models/event_model.dart';
+import '../bloc/calendar_bloc.dart';
 
 class EventPage extends StatelessWidget {
   const EventPage({super.key, required this.model});
@@ -107,12 +111,14 @@ class EventPage extends StatelessWidget {
                         children: [
                           SvgPicture.asset(AppIcons.location, color: white),
                           const SizedBox(width: 4),
-                          Text(
-                            model.location,
-                            style: const TextStyle(
-                              color: white,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
+                          Expanded(
+                            child: Text(
+                              model.location,
+                              style: const TextStyle(
+                                color: white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ],
@@ -167,7 +173,31 @@ class EventPage extends StatelessWidget {
             height: 50,
             color: red.withOpacity(0.2),
             onTap: () {
-              //TODO
+              wShowDialog(
+                  context: context,
+                  content: const Text('Are you sure to delete this event'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('No'),
+                    ),
+                    TextButton(
+                      child: const Text('Yes'),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        context.read<CalendarBloc>().add(
+                              CalendarEvent.deleteAnEvent(
+                                model: model,
+                                onSuccess: () => Navigator.pop(context),
+                                onFailure: (message) => context
+                                    .read<ShowPopUpBloc>()
+                                    .add(ShowPopUpEvent.showFailure(
+                                        text: message)),
+                              ),
+                            );
+                      },
+                    )
+                  ]);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

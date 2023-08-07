@@ -11,4 +11,9 @@ class CalendarEvent with _$CalendarEvent {
       {required EventModel model,
       required ValueChanged<String> onFailure,
       required VoidCallback onSuccess}) = _AddEvent;
+
+  const factory CalendarEvent.deleteAnEvent(
+      {required EventModel model,
+      required VoidCallback onSuccess,
+      required ValueChanged<String> onFailure}) = _DeleteAnEvent;
 }

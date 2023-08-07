@@ -10,6 +10,8 @@ void wShowDialog({
     pageBuilder: (ctx, a1, a2) {
       return Container();
     },
+    barrierDismissible: true,
+    barrierLabel: 's',
     transitionBuilder: (context, a1, a2, child) {
       var curve = Curves.easeInOut.transform(a1.value);
       return Transform.scale(

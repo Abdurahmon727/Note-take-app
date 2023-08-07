@@ -7,4 +7,6 @@ abstract class HomeRepository {
   Future<Either<StorageFailure, List<EventModel>>> getEvents(String time);
   Future<Either<StorageFailure, List<int>>> getFirst3EventsColorIndexes(
       String date);
+
+  Future<Either<StorageFailure, void>> deleteAnEvent(int id);
 }

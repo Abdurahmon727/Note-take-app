@@ -37,6 +37,7 @@ class WTextField extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           TextField(
+            textCapitalization: TextCapitalization.sentences,
             maxLength: maxLength,
             readOnly: isReadOnly,
             onTap: onTap,

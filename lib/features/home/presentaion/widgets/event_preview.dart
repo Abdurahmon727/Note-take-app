@@ -76,18 +76,25 @@ class WEventPreview extends StatelessWidget {
                         ),
                       ),
                     if (model.location.isNotEmpty)
-                      Row(
-                        children: [
-                          SvgPicture.asset(AppIcons.location, color: darkColor),
-                          const SizedBox(width: 4),
-                          Text(
-                            model.location,
-                            style: TextStyle(
-                                color: darkColor,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
+                      Expanded(
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(AppIcons.location,
+                                color: darkColor),
+                            const SizedBox(width: 4),
+                            Expanded(
+                              child: Text(
+                                model.location,
+                                style: TextStyle(
+                                    color: darkColor,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                   ],
                 ),
