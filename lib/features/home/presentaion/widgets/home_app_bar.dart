@@ -8,8 +8,8 @@ import '../../../../core/widgets/bottom_sheet.dart';
 import '../../../../core/widgets/w_scale.dart';
 import '../bloc/calendar_bloc.dart';
 
-class WHomeBar extends StatelessWidget {
-  const WHomeBar({
+class WHomeAppBar extends StatelessWidget {
+  const WHomeAppBar({
     super.key,
     required this.selectedDate,
   });
@@ -41,6 +41,8 @@ class WHomeBar extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).copyWith().size.height / 3,
                       child: CupertinoDatePicker(
+                        maximumDate: DateTime(2950),
+                        minimumDate: DateTime(1950),
                         initialDateTime:
                             context.read<CalendarBloc>().state.selectedDate,
                         onDateTimeChanged: (newdate) => selectedDate = newdate,

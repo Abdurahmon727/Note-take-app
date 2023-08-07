@@ -8,6 +8,7 @@ import '../../../../assets/constants.dart';
 import '../../../../assets/icons.dart';
 import '../../../../assets/theme.dart';
 import '../../../../core/bloc/show_pop_up/show_pop_up_bloc.dart';
+import '../../../../core/widgets/bottom_sheet.dart';
 import '../../../../core/widgets/dialog.dart';
 import '../../../../core/widgets/text_field.dart';
 import '../../../../core/widgets/w_button.dart';
@@ -152,12 +153,21 @@ class _AddEventPageState extends State<AddEventPage> {
                           WTextField(
                             title: 'Event time',
                             isReadOnly: true,
-                            onTap: () => showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext builder) {
-                                DateTime selectedTime = DateTime.now();
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
+                            onTap: () {
+                              DateTime selectedTime = DateTime.now();
+                              fShowBottomSheet(
+                                  context: context,
+                                  onTapButton: () {
+                                    final hour = selectedTime.hour < 10
+                                        ? '0${selectedTime.hour}'
+                                        : selectedTime.hour.toString();
+                                    final min = selectedTime.minute < 10
+                                        ? '0${selectedTime.minute}'
+                                        : selectedTime.minute.toString();
+                                    eventTime = '$hour:$min';
+                                    setState(() {});
+                                    Navigator.pop(context);
+                                  },
                                   children: [
                                     SizedBox(
                                       height: MediaQuery.of(context)
@@ -173,33 +183,8 @@ class _AddEventPageState extends State<AddEventPage> {
                                         mode: CupertinoDatePickerMode.time,
                                       ),
                                     ),
-                                    WButton(
-                                      margin: const EdgeInsets.all(12),
-                                      height: 45,
-                                      child: const Text(
-                                        'Apply',
-                                        style: TextStyle(
-                                          color: white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        final hour = selectedTime.hour < 10
-                                            ? '0${selectedTime.hour}'
-                                            : selectedTime.hour.toString();
-                                        final min = selectedTime.minute < 10
-                                            ? '0${selectedTime.minute}'
-                                            : selectedTime.minute.toString();
-                                        eventTime = '$hour:$min';
-                                        setState(() {});
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
+                                  ]);
+                            },
                             controller: TextEditingController(text: eventTime),
                           ),
                         ],

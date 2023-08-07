@@ -11,7 +11,7 @@ import 'pages/add_event_page.dart';
 import 'widgets/calendar_body.dart';
 import 'widgets/calendar_header.dart';
 import 'widgets/event_preview.dart';
-import 'widgets/home_bar.dart';
+import 'widgets/home_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
             final selectedDate = state.selectedDate;
             return Column(
               children: [
-                WHomeBar(selectedDate: selectedDate ?? DateTime.now()),
+                WHomeAppBar(selectedDate: selectedDate ?? DateTime.now()),
                 Expanded(
                   child: ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 28),
