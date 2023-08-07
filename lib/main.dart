@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:udevs_task/core/data/service_locator.dart';
 
 import 'assets/colors.dart';
 import 'assets/theme.dart';
 import 'core/bloc/show_pop_up/show_pop_up_bloc.dart';
 import 'core/data/database/database_service.dart';
+import 'core/data/service_locator.dart';
 import 'core/models/popup_types.dart';
 import 'core/widgets/popups.dart';
 import 'features/home/presentaion/bloc/calendar_bloc.dart';
@@ -20,14 +20,9 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
