@@ -1,15 +1,13 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:udevs_task/assets/constants.dart';
-import 'package:udevs_task/features/home/data/models/event_model.dart';
-import 'package:udevs_task/features/home/presentaion/pages/event_page.dart';
 
+import '../../../../assets/constants.dart';
 import '../../../../assets/icons.dart';
 import '../../../../core/navigator.dart';
+import '../../data/models/event_model.dart';
+import '../pages/event_page.dart';
 
-class WEventPreview extends StatefulWidget {
+class WEventPreview extends StatelessWidget {
   const WEventPreview({
     super.key,
     required this.model,
@@ -17,25 +15,13 @@ class WEventPreview extends StatefulWidget {
   final EventModel model;
 
   @override
-  State<WEventPreview> createState() => _WEventPreviewState();
-}
-
-class _WEventPreviewState extends State<WEventPreview> {
-  late final Color lightColor;
-  late final Color darkColor;
-  @override
-  void initState() {
-    super.initState();
-    lightColor = AppConstants.todoLightColors[widget.model.colorIndex];
-    darkColor = AppConstants.todoDarkColors[widget.model.colorIndex];
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final lightColor = AppConstants.todoLightColors[model.colorIndex];
+    final darkColor = AppConstants.todoDarkColors[model.colorIndex];
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        material(page: EventPage(model: widget.model)),
+        material(page: EventPage(model: model)),
       ),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -50,7 +36,7 @@ class _WEventPreviewState extends State<WEventPreview> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.model.name,
+                  model.name,
                   style: TextStyle(
                     color: darkColor,
                     fontSize: 14,
@@ -60,7 +46,7 @@ class _WEventPreviewState extends State<WEventPreview> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  widget.model.description,
+                  model.description,
                   style: TextStyle(
                       color: darkColor,
                       fontSize: 8,
@@ -71,7 +57,7 @@ class _WEventPreviewState extends State<WEventPreview> {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    if (widget.model.time.isNotEmpty)
+                    if (model.time.isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Row(
@@ -79,7 +65,7 @@ class _WEventPreviewState extends State<WEventPreview> {
                             SvgPicture.asset(AppIcons.clock, color: darkColor),
                             const SizedBox(width: 4),
                             Text(
-                              widget.model.time,
+                              model.time,
                               style: TextStyle(
                                   color: darkColor,
                                   fontSize: 10,
@@ -88,13 +74,13 @@ class _WEventPreviewState extends State<WEventPreview> {
                           ],
                         ),
                       ),
-                    if (widget.model.location.isNotEmpty)
+                    if (model.location.isNotEmpty)
                       Row(
                         children: [
                           SvgPicture.asset(AppIcons.location, color: darkColor),
                           const SizedBox(width: 4),
                           Text(
-                            widget.model.location,
+                            model.location,
                             style: TextStyle(
                                 color: darkColor,
                                 fontSize: 10,

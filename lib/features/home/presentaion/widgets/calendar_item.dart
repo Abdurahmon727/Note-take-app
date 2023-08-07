@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:udevs_task/assets/constants.dart';
 
 import '../../../../assets/colors.dart';
+import '../../../../assets/constants.dart';
 import '../../../../core/data/date_time.dart';
 import '../../data/repositories/home_repo.dart';
 
@@ -23,7 +23,7 @@ class WCalendarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final int number = date.day;
     final isToday = date.isToday;
-    final bool isPassed = date.isBefore(DateTime.now());
+    final bool isPassed = date.isBefore(DateTime.now().dayStart);
 
     return GestureDetector(
       onTap: onTap,
