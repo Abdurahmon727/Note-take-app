@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:udevs_task/core/widgets/dialog.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
@@ -52,38 +53,25 @@ class _AddEventPageState extends State<AddEventPage> {
     if (eventNameController.text.isNotEmpty ||
         eventDescriptionController.text.isNotEmpty ||
         eventLocationController.text.isNotEmpty) {
-      showGeneralDialog(
+      wShowDialog(
         context: context,
-        pageBuilder: (ctx, a1, a2) {
-          return Container();
-        },
-        transitionBuilder: (context, a1, a2, child) {
-          var curve = Curves.easeInOut.transform(a1.value);
-          return Transform.scale(
-            scale: curve,
-            child: AlertDialog(
-              actionsPadding: const EdgeInsets.all(4),
-              content: const Text(
-                  'Do you want to discard all the changes and exit?'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('No'),
-                ),
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      'Yes',
-                      style: TextStyle(color: greyText),
-                    ))
-              ],
+        content: const Text('Do you want to discard all the changes and exit?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Yes',
+              style: TextStyle(color: greyText),
             ),
-          );
-        },
-        transitionDuration: const Duration(milliseconds: 300),
+          )
+        ],
       );
       return false;
     }
@@ -165,54 +153,49 @@ class _AddEventPageState extends State<AddEventPage> {
                           WTextField(
                             title: 'Event time',
                             isReadOnly: true,
-                            onTap: () {
-                              //TODO
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (BuildContext builder) {
-                                  DateTime selectedTime = DateTime.now();
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(
-                                        height: MediaQuery.of(context)
-                                                .copyWith()
-                                                .size
-                                                .height /
-                                            3,
-                                        child: CupertinoDatePicker(
-                                          initialDateTime: eventTime.isNotEmpty
-                                              ? DateTime.now().copyWith() //TODO
-                                              : DateTime.now(),
-                                          onDateTimeChanged: (newdate) =>
-                                              selectedTime = newdate,
-                                          use24hFormat: true,
-                                          mode: CupertinoDatePickerMode.time,
+                            onTap: () => showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext builder) {
+                                DateTime selectedTime = DateTime.now();
+                                return Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      height: MediaQuery.of(context)
+                                              .copyWith()
+                                              .size
+                                              .height /
+                                          3,
+                                      child: CupertinoDatePicker(
+                                        initialDateTime: DateTime.now(), //TODO
+                                        onDateTimeChanged: (newdate) =>
+                                            selectedTime = newdate,
+                                        use24hFormat: true,
+                                        mode: CupertinoDatePickerMode.time,
+                                      ),
+                                    ),
+                                    WButton(
+                                      margin: const EdgeInsets.all(12),
+                                      height: 45,
+                                      child: const Text(
+                                        'Apply',
+                                        style: TextStyle(
+                                          color: white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
-                                      WButton(
-                                        margin: const EdgeInsets.all(12),
-                                        height: 45,
-                                        child: const Text(
-                                          'Apply',
-                                          style: TextStyle(
-                                            color: white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          eventTime =
-                                              '${selectedTime.hour}:${selectedTime.minute}';
-                                          setState(() {});
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
+                                      onTap: () {
+                                        eventTime =
+                                            '${selectedTime.hour}:${selectedTime.minute}';
+                                        setState(() {});
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
                             controller: TextEditingController(text: eventTime),
                           ),
                         ],
@@ -232,32 +215,38 @@ class _AddEventPageState extends State<AddEventPage> {
                     ),
                   ),
                   onTap: () {
-                    final EventModel model = EventModel(
-                      day: widget.selectedDate.toIso8601String(),
-                      name: eventNameController.text,
-                      description: eventDescriptionController.text,
-                      time: '',
-                      location: eventLocationController.text,
-                      colorIndex: colorIndex,
-                    );
-                    context.read<CalendarBloc>().add(
-                          CalendarEvent.addNewEvent(
-                            model: model,
-                            onFailure: (error) {
-                              context
-                                  .read<ShowPopUpBloc>()
-                                  .add(ShowPopUpEvent.showFailure(text: error));
-                            },
-                            onSuccess: () {
-                              Navigator.pop(context);
-                              context.read<ShowPopUpBloc>().add(
-                                    ShowPopUpEvent.showSuccess(
-                                        text:
-                                            'New event successfully added 👌'),
-                                  );
-                            },
-                          ),
-                        );
+                    if (eventNameController.text.isNotEmpty) {
+                      final EventModel model = EventModel(
+                        day: widget.selectedDate.toIso8601String(),
+                        name: eventNameController.text,
+                        description: eventDescriptionController.text,
+                        time: eventTime,
+                        location: eventLocationController.text,
+                        colorIndex: colorIndex,
+                      );
+                      context.read<CalendarBloc>().add(
+                            CalendarEvent.addNewEvent(
+                              model: model,
+                              onFailure: (error) {
+                                context.read<ShowPopUpBloc>().add(
+                                    ShowPopUpEvent.showFailure(text: error));
+                              },
+                              onSuccess: () {
+                                Navigator.pop(context);
+                                context.read<ShowPopUpBloc>().add(
+                                      ShowPopUpEvent.showSuccess(
+                                          text:
+                                              'New event successfully added 👌'),
+                                    );
+                              },
+                            ),
+                          );
+                    } else {
+                      context.read<ShowPopUpBloc>().add(
+                            ShowPopUpEvent.showWarning(
+                                text: 'Event name should not be empty'),
+                          );
+                    }
                   },
                 ),
               ],

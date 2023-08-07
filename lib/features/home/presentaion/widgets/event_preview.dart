@@ -45,15 +45,16 @@ class WEventPreview extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                Text(
-                  model.description,
-                  style: TextStyle(
-                      color: darkColor,
-                      fontSize: 8,
-                      fontWeight: FontWeight.w400),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                if (model.description.isNotEmpty)
+                  Text(
+                    model.description,
+                    style: TextStyle(
+                        color: darkColor,
+                        fontSize: 8,
+                        fontWeight: FontWeight.w400),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 const SizedBox(height: 10),
                 Row(
                   children: [
