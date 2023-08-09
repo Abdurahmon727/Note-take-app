@@ -96,12 +96,4 @@ flutter:
         - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
         - asset: assets/fonts/poppins/Poppins-Thin.ttf
 
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/roboto/Roboto-Regular.ttf
-        - asset: assets/fonts/roboto/Roboto-Bold.ttf
-        - asset: assets/fonts/roboto/Roboto-Thin.ttf
-        - asset: assets/fonts/roboto/Roboto-Medium.ttf
- 
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+

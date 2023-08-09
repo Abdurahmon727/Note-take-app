@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
 import '../../../../assets/icons.dart';
-import '../../../../assets/theme.dart';
 import '../../../../core/bloc/show_pop_up/show_pop_up_bloc.dart';
 import '../../../../core/ui_functions/bottom_sheet.dart';
 import '../../../../core/ui_functions/dialog.dart';
