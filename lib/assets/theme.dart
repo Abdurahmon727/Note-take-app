@@ -17,11 +17,4 @@ abstract class AppTheme {
         primaryColor: blue,
         colorScheme: const ColorScheme.dark().copyWith(primary: blue),
       );
-
-  static ThemeData robotoTheme() => ThemeData(
-        fontFamily: 'Roboto',
-        primaryColor: blue,
-        colorScheme: const ColorScheme.light().copyWith(primary: blue),
-        useMaterial3: true,
-      );
 }
