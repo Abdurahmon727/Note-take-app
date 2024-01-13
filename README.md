@@ -13,7 +13,7 @@ Note taking app
 ## Features
 * Flexible Local Calendar
 * Add events by importance level
-* CRUP events (CREATE, READ, UPDATE, DELETE)
+* CRUD events (CREATE, READ, UPDATE, DELETE)
   
 	
 ## Technologies
