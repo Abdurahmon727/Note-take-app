@@ -8,22 +8,13 @@
 * [Setup](#setup)
 
 ## General info
-This project is made to find food recipes easily
+Note taking app
 
 ## Features
-* Authentication:
-  Firebase Auth phone number
-  Only Uzbekistan phone numbers available
-
-* Home Recipe recommendation
-  gets recommended recipes with pagination
+* Flexible Local Calendar
+* Add events by importance level
+* CRUP events (CREATE, READ, UPDATE, DELETE)
   
-* Search
-  search by food name
-  planed to add search by ingredients and nutrients
-  
-* Favourited recipes
-  app saves favourites recipes locally in order to show them when no internet
 	
 ## Technologies
 Project is created with:
