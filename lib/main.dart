@@ -72,6 +72,7 @@ class MyApp extends StatelessWidget {
           },
           child: OverlaySupport.global(
             child: MaterialApp(
+              debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme(),
               darkTheme: AppTheme.darkTheme(),
               themeMode: ThemeMode.system,
