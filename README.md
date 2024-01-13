@@ -33,17 +33,20 @@ Project is created with:
 
 ## Screenshots:
 
-![Screenshot_20230329-135134](https://user-images.githubusercontent.com/92048454/228482147-51b8351a-9b2b-4e42-b603-8e1529883a07.png)
-![Screenshot_20230329-135235](https://user-images.githubusercontent.com/92048454/228481714-4229cbf4-bf75-4075-9696-e3ba534e24e1.png)
-![Screenshot_20230329-135152](https://user-images.githubusercontent.com/92048454/228481311-62c1f83a-f78b-4b5b-b6a2-f5a0a112dacf.png)
-![Screenshot_20230329-135152](https://user-images.githubusercontent.com/92048454/228481612-39ceb1ba-7c0f-4ee7-b172-ebe467f765fd.png)
-![Screenshot_20230329-135216](https://user-images.githubusercontent.com/92048454/228481635-59620af0-18ec-4405-a1d0-ca5f7e0066b5.png)
-![Screenshot_20230329-135222](https://user-images.githubusercontent.com/92048454/228481652-d3708947-de57-41b6-9113-cb09faf7a499.png)
-![Screenshot_20230329-135226](https://user-images.githubusercontent.com/92048454/228481662-58971470-9f47-4f72-ad42-d3f9b44ad58b.png)
+![Screenshot_20240113-131721](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/deb85af6-f357-4fa7-9df5-68d72c2cbc4e)
+![Screenshot_20240113-132139](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/fd31ffc2-4bad-4d77-9e1d-6831c48314f7)
+![Screenshot_20240113-132040](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/01fed85a-a62d-42fe-9b86-4abf1e933467)
+![Screenshot_20240113-132033](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/f8d8f6e7-08d5-4287-a2e4-7e2b139482ac)
+![Screenshot_20240113-132025](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/be368ae4-f538-4498-9778-58ff69983852)
+![Screenshot_20240113-132010](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/89aa455d-553c-462e-8d94-0a06aef04cf9)
+![Screenshot_20240113-132002](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/d9519cc2-7f5f-46b5-aa40-c710878aa8cb)
+![Screenshot_20240113-131825](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/f75daa10-a5b1-4c8e-bdc4-02768781d336)
+![Screenshot_20240113-131817](https://github.com/Abdurahmon727/Note-take-app/assets/92048454/0131985a-6594-4076-a153-e3d6fc282239)
+
 
 	
 ## Setup
-To run this project, install Flutter&Dart locally
+To run this project, install Flutter & Dart locally
 
 
   
