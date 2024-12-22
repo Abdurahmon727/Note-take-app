@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
   dio: ^5.7.0
