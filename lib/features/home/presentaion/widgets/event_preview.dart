@@ -32,7 +32,7 @@ class WEventPreview extends StatelessWidget {
           Container(
             padding: const EdgeInsets.fromLTRB(12, 22, 12, 12),
             decoration: BoxDecoration(
-              color: lightColor.withOpacity(0.3),
+              color: lightColor.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -63,7 +63,10 @@ class WEventPreview extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 10),
                         child: Row(
                           children: [
-                            SvgPicture.asset(AppIcons.clock, color: darkColor),
+                            SvgPicture.asset(
+                              AppIcons.clock,
+                              colorFilter: ColorFilter.mode(darkColor, BlendMode.srcIn),
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               model.time,
@@ -77,7 +80,10 @@ class WEventPreview extends StatelessWidget {
                       Expanded(
                         child: Row(
                           children: [
-                            SvgPicture.asset(AppIcons.location, color: darkColor),
+                            SvgPicture.asset(
+                              AppIcons.location,
+                              colorFilter: ColorFilter.mode(darkColor, BlendMode.srcIn),
+                            ),
                             const SizedBox(width: 4),
                             Expanded(
                               child: Text(
