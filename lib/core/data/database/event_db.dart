@@ -1,5 +1,5 @@
 class EventDb {
-  final tableName = 'events';
+  static const tableName = 'events';
 
   Future<void> createTable(db) async {
     await db.execute("""CREATE TABLE $tableName (   

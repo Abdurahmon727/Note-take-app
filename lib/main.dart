@@ -6,7 +6,7 @@ import 'assets/colors.dart';
 import 'assets/theme.dart';
 import 'core/bloc/show_pop_up/show_pop_up_bloc.dart';
 import 'core/data/service_locator.dart';
-import 'core/models/popup_types.dart';
+import 'core/enums/popup_types.dart';
 import 'core/widgets/popups.dart';
 import 'features/home/presentaion/bloc/calendar_bloc.dart';
 import 'features/home/presentaion/home_page.dart';
@@ -27,10 +27,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CalendarBloc()..add(const CalendarEvent.init()),
+          create: (_) => CalendarBloc()..add(const CalendarEvent.init()),
         ),
         BlocProvider(
-          create: (context) => ShowPopUpBloc(),
+          create: (_) => ShowPopUpBloc(),
         ),
       ],
       child: Builder(builder: (context) {
@@ -44,8 +44,7 @@ class MyApp extends StatelessWidget {
                 autoDismiss: true,
                 slideDismissDirection: DismissDirection.horizontal,
               );
-            } else if (state.showPopUp &&
-                state.popUpType == PopUpType.warning) {
+            } else if (state.showPopUp && state.popUpType == PopUpType.warning) {
               showSimpleNotification(
                 WPopUp(
                   color: orange,
@@ -56,8 +55,7 @@ class MyApp extends StatelessWidget {
                 autoDismiss: true,
                 slideDismissDirection: DismissDirection.horizontal,
               );
-            } else if (state.showPopUp &&
-                state.popUpType == PopUpType.success) {
+            } else if (state.showPopUp && state.popUpType == PopUpType.success) {
               showSimpleNotification(
                 WPopUp(
                   color: green,
@@ -73,8 +71,8 @@ class MyApp extends StatelessWidget {
           child: OverlaySupport.global(
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
-              theme: AppTheme.lightTheme(),
-              darkTheme: AppTheme.darkTheme(),
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
               themeMode: ThemeMode.system,
               home: const HomePage(),
             ),

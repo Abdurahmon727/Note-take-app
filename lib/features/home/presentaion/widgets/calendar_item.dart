@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
-import '../../../../core/data/date_time.dart';
-import '../../data/repositories/home_repo.dart';
+import '../../../../core/data/service_locator.dart';
+import '../../../../core/extensions/date_time.dart';
+import '../../domain/repositories/home_repo.dart';
 
 class WCalendarItem extends StatelessWidget {
   const WCalendarItem({
@@ -19,6 +20,7 @@ class WCalendarItem extends StatelessWidget {
   final bool isSelected;
 
   final DateTime date;
+
   @override
   Widget build(BuildContext context) {
     final int number = date.day;
@@ -60,32 +62,31 @@ class WCalendarItem extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           FutureBuilder(
-              future: HomeRepositoryImpl()
-                  .getFirst3EventsColorIndexes(date.toIso8601String()),
-              builder: (context, snapShot) {
-                if (snapShot.hasData && snapShot.data!.isRight) {
-                  final colorIndexes = snapShot.data!.right;
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List.generate(
-                        colorIndexes.length,
-                        (i) => Container(
-                          height: 4,
-                          width: 4,
-                          decoration: BoxDecoration(
-                            color:
-                                AppConstants.todoLightColors[colorIndexes[i]],
-                            shape: BoxShape.circle,
-                          ),
+            future: sl<HomeRepository>().getFirst3EventsColorIndexes(date.toIso8601String()),
+            builder: (context, snapShot) {
+              if (snapShot.hasData && snapShot.data!.isRight) {
+                final colorIndexes = snapShot.data!.right;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: List.generate(
+                      colorIndexes.length,
+                      (i) => Container(
+                        height: 4,
+                        width: 4,
+                        decoration: BoxDecoration(
+                          color: AppConstants.todoLightColors[colorIndexes[i]],
+                          shape: BoxShape.circle,
                         ),
                       ),
                     ),
-                  );
-                }
-                return const SizedBox.shrink();
-              }),
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
           const SizedBox(height: 5),
         ],
       ),

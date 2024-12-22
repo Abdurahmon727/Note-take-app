@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../models/popup_types.dart';
+import '../../enums/popup_types.dart';
 
 part 'show_pop_up_bloc.freezed.dart';
 part 'show_pop_up_event.dart';

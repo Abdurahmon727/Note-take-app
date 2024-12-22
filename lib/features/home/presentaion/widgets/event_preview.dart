@@ -13,6 +13,7 @@ class WEventPreview extends StatelessWidget {
     required this.model,
     required this.index,
   });
+
   final EventModel model;
   final int index;
 
@@ -50,10 +51,7 @@ class WEventPreview extends StatelessWidget {
                 if (model.description.isNotEmpty)
                   Text(
                     model.description,
-                    style: TextStyle(
-                        color: darkColor,
-                        fontSize: 8,
-                        fontWeight: FontWeight.w400),
+                    style: TextStyle(color: darkColor, fontSize: 8, fontWeight: FontWeight.w400),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -70,9 +68,7 @@ class WEventPreview extends StatelessWidget {
                             Text(
                               model.time,
                               style: TextStyle(
-                                  color: darkColor,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500),
+                                  color: darkColor, fontSize: 10, fontWeight: FontWeight.w500),
                             ),
                           ],
                         ),
@@ -81,16 +77,13 @@ class WEventPreview extends StatelessWidget {
                       Expanded(
                         child: Row(
                           children: [
-                            SvgPicture.asset(AppIcons.location,
-                                color: darkColor),
+                            SvgPicture.asset(AppIcons.location, color: darkColor),
                             const SizedBox(width: 4),
                             Expanded(
                               child: Text(
                                 model.location,
                                 style: TextStyle(
-                                    color: darkColor,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w500),
+                                    color: darkColor, fontSize: 10, fontWeight: FontWeight.w500),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -106,11 +99,12 @@ class WEventPreview extends StatelessWidget {
           Container(
             height: 10,
             decoration: BoxDecoration(
-                color: lightColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                )),
+              color: lightColor,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+            ),
           ),
         ],
       ),

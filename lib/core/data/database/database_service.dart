@@ -1,4 +1,3 @@
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'event_db.dart';
@@ -29,6 +28,6 @@ class DatabaseService {
   Future<String> get fullPath async {
     const name = 'events.db';
     final path = await getDatabasesPath();
-    return join(path, name);
+    return path + name;
   }
 }
