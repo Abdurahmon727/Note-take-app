@@ -181,8 +181,8 @@ class _AddEventPageState extends State<AddEventPage> {
                                         3,
                                     child: CupertinoDatePicker(
                                       initialDateTime: currentTimeAtPicker,
-                                      onDateTimeChanged: (newdate) =>
-                                          currentTimeAtPicker = newdate,
+                                      onDateTimeChanged: (newDate) =>
+                                          currentTimeAtPicker = newDate,
                                       use24hFormat: true,
                                       mode: CupertinoDatePickerMode.time,
                                     ),
