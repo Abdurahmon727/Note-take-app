@@ -8,12 +8,12 @@ import '../models/event_model.dart';
 class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Either<StorageFailure, void>> addAnEvent(EventModel model) async {
-    try {
-      await sl<HomeLocalDataSource>().addModel(model);
-      return Right(null);
-    } catch (e) {
-      return Left(StorageFailure(errorMessage: 'Unable to add'));
-    }
+    // try {
+    await sl<HomeLocalDataSource>().addModel(model);
+    return Right(null);
+    // } catch (e) {
+    //   return Left(StorageFailure(errorMessage: 'Unable to add'));
+    // }
   }
 
   @override

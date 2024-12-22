@@ -9,7 +9,9 @@ import '../../data/models/event_model.dart';
 import '../../domain/repositories/home_repo.dart';
 
 part 'calendar_bloc.freezed.dart';
+
 part 'calendar_event.dart';
+
 part 'calendar_state.dart';
 
 class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
