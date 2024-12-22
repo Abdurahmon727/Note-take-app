@@ -49,6 +49,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        archivesBaseName = "note-take-app-v${versionName}_($versionCode)"
     }
 
     buildTypes {
