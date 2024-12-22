@@ -17,22 +17,21 @@ import 'edit_event_page.dart';
 
 class EventPage extends StatelessWidget {
   const EventPage({super.key, required this.index});
+
   final int index;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<CalendarBloc, CalendarState>(
-        buildWhen: (previous, current) =>
-            !listEquals(previous.models, current.models),
+        buildWhen: (previous, current) => !listEquals(previous.models, current.models),
         builder: (context, state) {
           final model = state.models[index];
           return Column(
             children: [
               Container(
                 width: double.maxFinite,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
                 decoration: BoxDecoration(
                   color: AppConstants.todoLightColors[model.colorIndex],
                   borderRadius: const BorderRadius.only(
@@ -69,9 +68,7 @@ class EventPage extends StatelessWidget {
                                 const Text(
                                   'Edit',
                                   style: TextStyle(
-                                      color: white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
+                                      color: white, fontSize: 14, fontWeight: FontWeight.w500),
                                 ),
                               ],
                             ),
@@ -91,9 +88,7 @@ class EventPage extends StatelessWidget {
                         Text(
                           model.description,
                           style: const TextStyle(
-                              color: white,
-                              fontSize: 8,
-                              fontWeight: FontWeight.w400),
+                              color: white, fontSize: 8, fontWeight: FontWeight.w400),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -102,14 +97,15 @@ class EventPage extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 10),
                           child: Row(
                             children: [
-                              SvgPicture.asset(AppIcons.clock, color: white),
+                              SvgPicture.asset(
+                                AppIcons.clock,
+                                colorFilter: const ColorFilter.mode(white, BlendMode.srcIn),
+                              ),
                               const SizedBox(width: 4),
                               Text(
                                 model.time,
                                 style: const TextStyle(
-                                    color: white,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w500),
+                                    color: white, fontSize: 10, fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
@@ -119,7 +115,10 @@ class EventPage extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 10),
                           child: Row(
                             children: [
-                              SvgPicture.asset(AppIcons.location, color: white),
+                              SvgPicture.asset(
+                                AppIcons.location,
+                                colorFilter: const ColorFilter.mode(white, BlendMode.srcIn),
+                              ),
                               const SizedBox(width: 4),
                               Expanded(
                                 child: Text(
@@ -162,16 +161,13 @@ class EventPage extends StatelessWidget {
                         children: [
                           const Text(
                             'Description',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                           ),
                           const SizedBox(height: 10),
                           Text(
                             model.description,
                             style: const TextStyle(
-                                color: greyText,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400),
+                                color: greyText, fontSize: 14, fontWeight: FontWeight.w400),
                           ),
                         ],
                       )
@@ -182,12 +178,11 @@ class EventPage extends StatelessWidget {
                 margin: const EdgeInsets.all(28),
                 borderRadius: 10,
                 height: 50,
-                color: red.withOpacity(0.2),
+                color: red.withValues(alpha: 0.2),
                 onTap: () {
                   fShowDialog(
                       context: context,
-                      content:
-                          const Text('Are you sure to delete this event? 🧐'),
+                      content: const Text('Are you sure to delete this event? 🧐'),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
@@ -203,8 +198,7 @@ class EventPage extends StatelessWidget {
                                     onSuccess: () => Navigator.pop(context),
                                     onFailure: (message) => context
                                         .read<ShowPopUpBloc>()
-                                        .add(ShowPopUpEvent.showFailure(
-                                            text: message)),
+                                        .add(ShowPopUpEvent.showFailure(text: message)),
                                   ),
                                 );
                           },
@@ -217,8 +211,7 @@ class EventPage extends StatelessWidget {
                     SvgPicture.asset(AppIcons.bin),
                     const Text(
                       'Delete Event',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
