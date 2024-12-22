@@ -1,6 +1,6 @@
 import '../../../../core/data/either.dart';
 import '../../../../core/error/failure.dart';
-import '../../data/models/event_model.dart';
+import '../../data/model/event_model.dart';
 
 abstract class HomeRepository {
   Future<Either<StorageFailure, void>> addAnEvent(EventModel model);

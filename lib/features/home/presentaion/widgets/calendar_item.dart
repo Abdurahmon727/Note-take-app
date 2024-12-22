@@ -4,7 +4,7 @@ import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
 import '../../../../core/data/service_locator.dart';
 import '../../../../core/extensions/date_time.dart';
-import '../../domain/repositories/home_repo.dart';
+import '../../domain/repository/home_repo.dart';
 
 class WCalendarItem extends StatelessWidget {
   const WCalendarItem({

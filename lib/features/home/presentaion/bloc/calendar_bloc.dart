@@ -5,8 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/extensions/date_time.dart';
 import '../../../../core/data/service_locator.dart';
 import '../../../../core/enums/formz_status.dart';
-import '../../data/models/event_model.dart';
-import '../../domain/repositories/home_repo.dart';
+import '../../data/model/event_model.dart';
+import '../../domain/repository/home_repo.dart';
 
 part 'calendar_bloc.freezed.dart';
 

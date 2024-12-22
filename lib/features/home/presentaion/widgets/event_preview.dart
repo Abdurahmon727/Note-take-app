@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../assets/constants.dart';
 import '../../../../assets/icons.dart';
 import '../../../../core/navigator.dart';
-import '../../data/models/event_model.dart';
+import '../../data/model/event_model.dart';
 import '../pages/event_page.dart';
 
 class WEventPreview extends StatelessWidget {

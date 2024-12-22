@@ -1,8 +1,8 @@
 import '../../../../core/data/either.dart';
 import '../../../../core/error/failure.dart';
-import '../../domain/repositories/home_repo.dart';
-import '../data_sources/local_data_source.dart';
-import '../models/event_model.dart';
+import '../../domain/repository/home_repo.dart';
+import '../data_source/local_data_source.dart';
+import '../model/event_model.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
   final HomeLocalDataSource _localDataSource;

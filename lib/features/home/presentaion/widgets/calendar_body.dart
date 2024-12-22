@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
 import '../../../../core/extensions/date_time.dart';
-import '../../domain/entities/calendar_month.dart';
+import '../../domain/entity/calendar_month.dart';
 import 'calendar_item.dart';
 
 class WCalendarBody extends StatelessWidget {

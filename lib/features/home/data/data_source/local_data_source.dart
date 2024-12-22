@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 
-import '../models/event_model.dart';
+import '../model/event_model.dart';
 
 abstract class HomeLocalDataSource {
   Future<List<EventModel>> getModels(String time);

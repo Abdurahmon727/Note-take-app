@@ -12,7 +12,7 @@ import '../../../../core/ui_functions/dialog.dart';
 import '../../../../core/widgets/text_field.dart';
 import '../../../../core/widgets/w_button.dart';
 import '../../../../core/widgets/w_scale.dart';
-import '../../data/models/event_model.dart';
+import '../../data/model/event_model.dart';
 import '../bloc/calendar_bloc.dart';
 
 class AddEventPage extends StatefulWidget {
