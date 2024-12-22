@@ -13,14 +13,13 @@ void fShowBottomSheet({
 }) =>
     showModalBottomSheet(
       context: context,
-      builder: (context) => BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: children +
-              [
-                WButton(
-                  margin: const EdgeInsets.all(12),
+      builder: (context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: children +
+            [
+              SafeArea(
+                child: WButton(
+                  margin: const EdgeInsets.symmetric(horizontal: 12),
                   height: 45,
                   onTap: onTapButton,
                   child: Text(
@@ -32,7 +31,7 @@ void fShowBottomSheet({
                     ),
                   ),
                 ),
-              ],
-        ),
+              ),
+            ],
       ),
     );

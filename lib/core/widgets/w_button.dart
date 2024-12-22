@@ -9,38 +9,38 @@ class WButton extends StatelessWidget {
   final Color color;
   final Color textColor;
   final TextStyle? textStyle;
-  final EdgeInsets? margin;
+  final EdgeInsets margin;
   final EdgeInsets? padding;
   final GestureTapCallback onTap;
   final Widget? child;
   final BoxBorder? border;
   final bool loading;
   final bool disabled;
-  final double? borderRadius;
+  final double borderRadius;
   final Color disabledColor;
 
   const WButton({
     required this.onTap,
     this.width,
-    this.borderRadius,
+    this.borderRadius = 12,
     this.height,
     this.text = '',
     this.color = Colors.blue,
     this.textColor = Colors.white,
     this.textStyle,
-    this.margin,
+    this.margin = EdgeInsets.zero,
     this.padding,
     this.border,
     this.loading = false,
     this.disabled = false,
     this.disabledColor = Colors.grey,
-    Key? key,
+    super.key,
     this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: margin ?? EdgeInsets.zero,
+        padding: margin,
         child: WScaleAnimation(
           onTap: () {
             if (!(loading || disabled)) {
@@ -55,7 +55,7 @@ class WButton extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: disabled ? disabledColor : color,
-              borderRadius: BorderRadius.circular(borderRadius ?? 6),
+              borderRadius: BorderRadius.circular(borderRadius),
               border: border,
             ),
             child: loading
