@@ -9,8 +9,8 @@ class WPopUp extends StatelessWidget {
   const WPopUp({
     required this.text,
     required this.color,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class WPopUp extends StatelessWidget {
           BoxShadow(
             offset: const Offset(0, 1),
             blurRadius: 4,
-            color: black.withOpacity(0.12),
+            color: black.withValues(alpha: 0.12),
           )
         ],
       ),

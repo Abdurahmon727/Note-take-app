@@ -18,10 +18,9 @@ class WScaleAnimation extends StatefulWidget {
     this.duration = const Duration(milliseconds: 150),
     this.scaleValue = 0.95,
     this.onLongTap,
-    Key? key,
+    super.key,
   })  : assert(scaleValue <= 1 && scaleValue >= 0,
-            'scalue value should be in the range [0,1]'),
-        super(key: key);
+            'scalue value should be in the range [0,1]');
 
   @override
   _WScaleAnimationState createState() => _WScaleAnimationState();
