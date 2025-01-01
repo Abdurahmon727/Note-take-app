@@ -20,9 +20,9 @@ class WHomeAppBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(28, 10, 28, 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(width: 28),
+          // const SizedBox(width: 28),
           WScaleAnimation(
             onTap: () {
               DateTime selectedDate = DateTime.now();
@@ -74,12 +74,12 @@ class WHomeAppBar extends StatelessWidget {
               ],
             ),
           ),
-          WScaleAnimation(
-            onTap: () {
-              //TODO
-            },
-            child: SvgPicture.asset(AppIcons.ring),
-          ),
+          // WScaleAnimation(
+          //   onTap: () {
+          //     //TODO
+          //   },
+          //   child: SvgPicture.asset(AppIcons.ring),
+          // ),
         ],
       ),
     );
